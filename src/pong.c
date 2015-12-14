@@ -29,7 +29,7 @@ int main(int argc, char *argv[])
 
 		clear();
 	
-		mvprintw(y, x, "o");
+		mvprintw(y, x, "O");
 		refresh();
 
 		usleep(DELAY);
