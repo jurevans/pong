@@ -12,10 +12,10 @@ LDFLAGS		= -lncurses
 all: pong
 
 pong:
-	$(CC) -o $(BIN)$(OBJ) $(SOURCES)pong.c $(LDFLAGS) $(CFLAGS)
+	mkdir -p bin && $(CC) -o $(BIN)$(OBJ) $(SOURCES)pong.c $(LDFLAGS) $(CFLAGS)
 
 clean:
-	rm -rfv $(BIN)$(OBJ)*
+	rm -rfv $(BIN)
 
 test:
 	valgrind $(BIN)$(OBJ) 
@@ -25,8 +25,6 @@ install:
 
 uninstall:
 	rm -fv /usr/local/bin/$(OBJ)
-
-	
 
 #############################
 
