@@ -17,7 +17,18 @@ pong:
 	$(CC) -o $(BIN)$(OBJ) $(SOURCES)pong.c $(LDFLAGS) $(CFLAGS)
 
 clean:
-	rm -f $(BIN)$(OBJ)
+	rm -rfv $(BIN)$(OBJ)*
+
+test:
+	valgrind $(BIN)$(OBJ) 
+
+install:
+	cp -v bin/$(OBJ) /usr/local/bin/$(OBJ)
+
+uninstall:
+	rm -fv /usr/local/bin/$(OBJ)
+
+	
 
 #############################
 

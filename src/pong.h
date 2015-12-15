@@ -16,7 +16,7 @@ struct Pong {
 	int next_y;
 	int x_direction;
 	int y_direction;
-	char* element;
+	char element[];
 };
 
 // Prototypes

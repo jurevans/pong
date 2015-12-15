@@ -61,7 +61,8 @@ struct Pong *Pong_create(	int x, int y,
 	_pong->next_y 		= next_y;
 	_pong->x_direction 	= x_direction;
 	_pong->y_direction 	= y_direction;
-	_pong->element		= element;
+
+	strcpy(_pong->element, element);
 
 	return _pong;
 }
