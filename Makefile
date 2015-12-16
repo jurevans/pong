@@ -3,7 +3,7 @@
 ##############################
 
 CC		= gcc
-CFLAGS		= -Wall -g -I.
+CFLAGS		= -Wall -Wstrict-prototypes -g -I.
 SOURCES		= ./src/
 BIN		= ./bin/
 OBJ		= pong
