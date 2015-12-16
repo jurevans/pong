@@ -3,7 +3,7 @@
 ##############################
 
 CC		= gcc
-CFLAGS		= -Wall -g -I.
+CFLAGS		= -Wall -Wstrict-prototypes -g -I.
 SOURCES		= ./src/
 BIN		= ./bin/
 OBJ		= pong
@@ -18,7 +18,7 @@ clean:
 	rm -rfv $(BIN)
 
 test:
-	valgrind $(BIN)$(OBJ) 
+	valgrind $(BIN)$(OBJ) --leak-check=full -v
 
 install:
 	cp -v bin/$(OBJ) /usr/local/bin/$(OBJ)
