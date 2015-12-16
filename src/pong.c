@@ -10,14 +10,9 @@
 
 int main(int argc, char *argv[])
 {
-	// Create NCURSES Screen
-	initscr();
-	noecho();
-	curs_set(FALSE);
-
-	struct Pong* _pong = Pong_create( 0, 0, 50, 50, 0, 0, 1, 1, "O" );
-
-	getmaxyx( stdscr, _pong->max_y, _pong->max_x );
+	struct Pong* _pong = pong_create( 0, 0, 50, 50, 0, 0, 1, 1, "*" );
+	
+	init_screen(_pong);
 
 	// Main Loop:
 	while(1) 
@@ -31,25 +26,35 @@ int main(int argc, char *argv[])
 
 		usleep(DELAY);
 
-		Pong_move(_pong);
+		pong_next(_pong);
 	}
 
-	endwin();
+	end_screen();
 
 	/* Let's see where our guy ended up! */
-	Pong_status(_pong);
+	pong_status(_pong);
 
-	/* Then destroy it! */
-	Pong_destroy(_pong);
+	pong_destroy(_pong);
 
 	return 0;
 }
 
-struct Pong *Pong_create(	int x, int y,
+void init_screen(struct Pong* _pong)
+{
+	// Create NCURSES Screen
+	initscr();
+	noecho();
+	curs_set(FALSE);
+
+	// Initialize x/y border max
+	getmaxyx( stdscr, _pong->max_y, _pong->max_x );
+}
+
+struct Pong *pong_create(	int x, int y,
 				int max_x, int max_y,
 				int next_x, int next_y,
 				int x_direction, int y_direction,
-				char* element )
+				char element[PONG_ELEMENT_SIZE] )
 {
 	struct Pong *_pong = malloc(sizeof(struct Pong));
 
@@ -69,7 +74,7 @@ struct Pong *Pong_create(	int x, int y,
 	return _pong;
 }
 
-void Pong_move(struct Pong* _pong)
+void pong_next(struct Pong* _pong)
 {
 	_pong->next_x = _pong->x + _pong->x_direction;
 	_pong->next_y = _pong->y + _pong->y_direction;
@@ -90,7 +95,7 @@ void Pong_move(struct Pong* _pong)
 
 }
 
-void Pong_status(struct Pong* _pong)
+void pong_status(struct Pong* _pong)
 {
 	printf("\nx, y: (%d, %d)\n", _pong->x, _pong->y);
 	printf("\nnext_x, next_y: (%d, %d)\n", _pong->next_x, _pong->next_y);
@@ -99,10 +104,16 @@ void Pong_status(struct Pong* _pong)
 	printf("y axis direction: %s\n", _pong->y_direction < 0 ? "backwards" : "forwards");
 }
 
-void Pong_destroy(struct Pong* _pong)
+void pong_destroy(struct Pong* _pong)
 {
+	// Release "malloc" allocated memory
 	assert(_pong != NULL);
 	free(_pong);
 }
 
+void end_screen()
+{
+	// End screen, window clean-up
+	endwin();
+}
 

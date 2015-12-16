@@ -18,7 +18,7 @@ clean:
 	rm -rfv $(BIN)
 
 test:
-	valgrind $(BIN)$(OBJ) 
+	valgrind $(BIN)$(OBJ) --leak-check=full -v
 
 install:
 	cp -v bin/$(OBJ) /usr/local/bin/$(OBJ)
