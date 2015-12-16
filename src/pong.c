@@ -15,7 +15,9 @@ int main(int argc, char *argv[])
 	noecho();
 	curs_set(FALSE);
 
-	struct Pong* _pong = Pong_create( 0, 0, 0, 0, 0, 0, 1, 1, "O" );
+	struct Pong* _pong = Pong_create( 0, 0, 50, 50, 0, 0, 1, 1, "O" );
+
+	getmaxyx( stdscr, _pong->max_y, _pong->max_x );
 
 	// Main Loop:
 	while(1) 
@@ -73,14 +75,14 @@ void Pong_move(struct Pong* _pong)
 	_pong->next_y = _pong->y + _pong->y_direction;
 
 	// Calculate for x-axis
-	if(_pong->x >= _pong->max_x || _pong->next_x < 0) {
+	if(_pong->next_x >= _pong->max_x || _pong->next_x < 0) {
 		_pong->x_direction *= -1;
 	} else {
 		_pong->x += _pong->x_direction;
 	}
 
 	// Calculate for y-axis
-	if(_pong->y >= _pong->max_y || _pong->next_y < 0) {
+	if(_pong->next_y >= _pong->max_y || _pong->next_y < 0) {
 		_pong->y_direction *= -1;
 	} else {
 		_pong->y += _pong->y_direction;
