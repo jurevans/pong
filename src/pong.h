@@ -39,5 +39,5 @@ void pong_status( struct Pong* _pong );
 void pong_destroy( struct Pong* _pong );
 
 void init_screen( struct Pong* _pong);
-void end_screen();
+void end_screen(void);
 
