@@ -8,6 +8,7 @@ int main(int argc, char *argv[])
 	int i;
 
 	initscr();
+
 	noecho();
 	curs_set(FALSE);
 
@@ -18,11 +19,15 @@ int main(int argc, char *argv[])
 	WINDOW* field = newwin(parent_y - SCORE_SIZE, parent_x, SCORE_SIZE, 0);
 	WINDOW* score = newwin(SCORE_SIZE, parent_x, 0, 0);
 
-	draw_borders(field);
-	draw_borders(score);
-
-	while(1) {
+	while(1) 
+	{
 		getmaxyx(stdscr, new_y, new_x);
+		
+		start_color();
+
+		init_pair(1, COLOR_RED, COLOR_BLACK);
+		init_pair(2, COLOR_GREEN, COLOR_BLACK);
+		init_pair(3, COLOR_BLUE, COLOR_WHITE);
 
 		if(new_y != parent_y || new_x != parent_x) {
 			parent_x = new_x;
@@ -30,14 +35,14 @@ int main(int argc, char *argv[])
 
 			wresize(field, new_y - SCORE_SIZE, new_x);
 			wresize(score, new_y - SCORE_SIZE, 0);
-			mvwin(score, new_y - SCORE_SIZE, 0);
+			refresh();
+
+			draw_borders(field);
+			draw_borders(score);
 
 			wclear(stdscr);
 			wclear(field);
 			wclear(score);
-
-			draw_borders(field);
-			draw_borders(score);
 		}
 
 		// Draw to windows (This is where we write to "Field" in play mode)
@@ -59,6 +64,11 @@ int main(int argc, char *argv[])
 		// Refresh
 		wrefresh(field);
 		wrefresh(score);
+
+		refresh();
+
+		draw_borders(field);
+		draw_borders(score);
 	}
 
 
@@ -83,7 +93,7 @@ void draw_borders(WINDOW *screen)
 	mvwprintw(screen, y - 1, 0, CORNERS);
 	mvwprintw(screen, 0, x - 1, CORNERS);
 	mvwprintw(screen, y - 1, x - 1, CORNERS);
-
+	
 	// Draw Sides
 
 	for( i = 1; i < (y - 1); ++i )
@@ -99,5 +109,4 @@ void draw_borders(WINDOW *screen)
 		mvwprintw(screen, 0, i, BORDERS_X);
 		mvwprintw(screen, y - 1, i, BORDERS_X);
 	}
-
 }
