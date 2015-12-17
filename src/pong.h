@@ -5,6 +5,10 @@
 #define DELAY 30000
 #endif
 
+#ifndef DEBUG_POSITION
+#define DEBUG_POSITION	1
+#endif
+
 #define PONG_ELEMENT_SIZE 1
 #define BORDER_X_SIZE 1
 #define BORDER_Y_SIZE 1

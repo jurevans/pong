@@ -22,13 +22,7 @@ int main(int argc, char *argv[])
 	while(1) 
 	{
 		getmaxyx(stdscr, new_y, new_x);
-		
-		start_color();
-
-		init_pair(1, COLOR_RED, COLOR_BLACK);
-		init_pair(2, COLOR_GREEN, COLOR_BLACK);
-		init_pair(3, COLOR_BLUE, COLOR_WHITE);
-
+	
 		if(new_y != parent_y || new_x != parent_x) {
 			parent_x = new_x;
 			parent_y = new_y;
@@ -77,7 +71,6 @@ int main(int argc, char *argv[])
 
 	endwin();
 	
-
 	return 0;
 }
 
