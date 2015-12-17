@@ -11,7 +11,10 @@
 int main(int argc, char *argv[])
 {
 	struct Pong* _pong = pong_create( 0, 0, 50, 50, 0, 0, 1, 1, "*" );
-	
+
+#if DEBUG_POSITION
+	char status[10];
+#endif
 	init_screen(_pong);
 
 	// Main Loop:
@@ -21,7 +24,13 @@ int main(int argc, char *argv[])
 		getmaxyx( stdscr, _pong->max_y, _pong->max_x );
 
 		clear();
+
+#if DEBUG_POSITION	
+		snprintf(status, sizeof(status), "%d,%d", _pong->x, _pong->y);
+		mvwprintw(stdscr, 0, 0, status );
+#endif
 		mvprintw( _pong->y, _pong->x, _pong->element );
+
 		refresh();
 
 		usleep(DELAY);
