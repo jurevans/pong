@@ -1,7 +1,6 @@
 /* borders.h */
 
 #include <ncurses.h>
-#include <unistd.h>
 
 /* DEFS */
 

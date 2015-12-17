@@ -1,4 +1,5 @@
 /* borders.c */
+#include <unistd.h>
 #include "borders.h"
 
 int main(int argc, char *argv[]) 
