@@ -12,7 +12,8 @@ LDFLAGS		= -lncurses
 all: pong
 
 pong:
-	mkdir -p bin && $(CC) -o $(BIN)$(OBJ) $(SOURCES)pong.c $(LDFLAGS) $(CFLAGS)
+	mkdir -p bin && $(CC) -o $(BIN)borders.o $(SOURCES)borders.c $(LDFLAGS) $(CFLAGS) \
+		&& $(CC) -o $(BIN)$(OBJ) $(SOURCES)pong.c $(LDFLAGS) $(CFLAGS) 
 
 clean:
 	rm -rfv $(BIN)
