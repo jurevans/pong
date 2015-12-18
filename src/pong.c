@@ -19,6 +19,11 @@ int main(int argc, char *argv[])
 {
 	int parent_x, parent_y, new_x, new_y;
 	int i;
+	struct Ball* _ball = ball_create( 0, 0, 50, 50, 0, 0, 1, 1, "*" );
+
+#if DEBUG_POSITION
+	char status[10];
+#endif
 
 	initscr();
 
@@ -35,6 +40,11 @@ int main(int argc, char *argv[])
 	while(1) 
 	{
 		getmaxyx(stdscr, new_y, new_x);
+		// Init Ball dimensions within Field
+		getmaxyx( field, _ball->max_y, _ball->max_x );
+
+		_ball->max_y -= (BORDER_Y_SIZE * 2);
+		_ball->max_x -= (BORDER_X_SIZE * 2);
 	
 		if(new_y != parent_y || new_x != parent_x) {
 			parent_x = new_x;
@@ -68,6 +78,16 @@ int main(int argc, char *argv[])
 		mvwprintw(score, 1, (int)(parent_x / 2) + 5, "02");
 		mvwprintw(score, 1, (int)(parent_x / 2), "|");
 
+#if DEBUG_POSITION	
+		snprintf(status, sizeof(status), "%d,%d", _ball->x, _ball->y);
+		mvwprintw(stdscr, 1, 8, status );
+#endif
+	
+		usleep(DELAY);
+
+		ball_next(_ball);
+		mvprintw( _ball->y + BORDER_Y_SIZE + SCORE_SIZE, _ball->x + BORDER_X_SIZE, _ball->element );
+
 		// Refresh
 		wrefresh(field);
 		wrefresh(score);
@@ -82,49 +102,14 @@ int main(int argc, char *argv[])
 	delwin(field);
 	delwin(score);
 
+	ball_status(_ball);
+
+	ball_destroy(_ball);
+
+	
+
 	endwin();
 	
 	return 0;
 }
 
-/*
-int main(int argc, char *argv[])
-{
-	struct Ball* _ball = ball_create( 0, 0, 50, 50, 0, 0, 1, 1, "*" );
-
-#if DEBUG_POSITION
-	char status[10];
-#endif
-	init_screen(_ball);
-
-	// Main Loop:
-	while(1) 
-	{
-		// Handle window resizes
-		getmaxyx( stdscr, _ball->max_y, _ball->max_x );
-
-		clear();
-
-#if DEBUG_POSITION	
-		snprintf(status, sizeof(status), "%d,%d", _ball->x, _ball->y);
-		mvwprintw(stdscr, 0, 0, status );
-#endif
-		mvprintw( _ball->y, _ball->x, _ball->element );
-
-		refresh();
-
-		usleep(DELAY);
-
-		ball_next(_ball);
-	}
-
-	end_screen();
-
-	// Let's see where our guy ended up!
-	ball_status(_ball);
-
-	ball_destroy(_ball);
-
-	return 0;
-}
-*/

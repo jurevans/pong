@@ -7,6 +7,7 @@
 #include <assert.h>
 
 #include "include/ball.h"
+#include "include/field.h"
 
 void init_screen(struct Ball* _ball)
 {
