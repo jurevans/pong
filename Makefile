@@ -2,30 +2,42 @@
 # Makefile :: PONG -JRE V.10 #
 ##############################
 
-CC		= gcc
-CFLAGS		= -Wall -Wstrict-prototypes -g -I.
-SOURCES		= ./src/
-BIN		= ./bin/
-OBJ		= pong
-LDFLAGS		= -lncurses
+CC	= gcc
+CFLAGS	= -Wall -Wstrict-prototypes -g
+SRC	= ./src/
+OBJ	= $(SRC)obj/
+INCLUDES= -I .$(SRC)include -I../include
+MAIN	= pong
+BIN	= ./bin/
+OBJS	= ball.o field.o
+LINK	= -lcurses
 
-all: pong
+default: pong
 
-pong:
-	mkdir -p bin && $(CC) -o $(BIN)borders.o $(SOURCES)borders.c $(LDFLAGS) $(CFLAGS) \
-		&& $(CC) -o $(BIN)$(OBJ) $(SOURCES)pong.c $(LDFLAGS) $(CFLAGS) 
+pong:	$(OBJS)
+	mkdir -p bin &&  $(CC) -o $(BIN)$(MAIN) $(SRC)pong.c $(OBJ)ball.o $(OBJ)field.o $(CFLAGS) $(LINK)
+
+ball.o:
+	mkdir -p src/obj && $(CC) $(CFLAGS) -c $(SRC)ball.c -o $(OBJ)ball.o
+
+field.o:
+	mkdir -p src/obj && $(CC) $(CFLAGS) -c $(SRC)field.c -o $(OBJ)field.o
+
+
+##################################################################################
 
 clean:
-	rm -rfv $(BIN)
+	rm -rfv bin && rm -rfv src/obj
 
 test:
-	valgrind $(BIN)$(OBJ) --leak-check=full -v
+	valgrind $(BIN)$(MAIN) --leak-check=full -v
 
 install:
-	cp -v bin/$(OBJ) /usr/local/bin/$(OBJ)
+	cp -v bin/$(MAIN) /usr/local/bin/$(MAIN)
 
 uninstall:
-	rm -fv /usr/local/bin/$(OBJ)
+	rm -fv /usr/local/bin/$(MAIN)
 
 #############################
 
+# DO NOT DELETE THIS LINE -- make depend needs it
