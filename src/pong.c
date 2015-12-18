@@ -1,4 +1,10 @@
-// pong.c
+/* 
+ * Pong
+ * Version 0.1
+ * pong.c
+ * Author: Justin R. Evans
+ */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -6,123 +12,104 @@
 #include <unistd.h>
 #include <assert.h>
 
-#include "pong.h"
+#include "include/field.h"
+#include "include/ball.h"
 
-int main(int argc, char *argv[])
+int main(int argc, char *argv[]) 
 {
-	struct Pong* _pong = pong_create( 0, 0, 50, 50, 0, 0, 1, 1, "*" );
+	int parent_x, parent_y, new_x, new_y;
+	int i;
+	struct Ball* _ball = ball_create( 0, 0, 50, 50, 0, 0, 1, 1, "*" );
 
 #if DEBUG_POSITION
 	char status[10];
 #endif
-	init_screen(_pong);
 
-	// Main Loop:
-	while(1) 
-	{
-		// Handle window resizes
-		getmaxyx( stdscr, _pong->max_y, _pong->max_x );
-
-		clear();
-
-#if DEBUG_POSITION	
-		snprintf(status, sizeof(status), "%d,%d", _pong->x, _pong->y);
-		mvwprintw(stdscr, 0, 0, status );
-#endif
-		mvprintw( _pong->y, _pong->x, _pong->element );
-
-		refresh();
-
-		usleep(DELAY);
-
-		pong_next(_pong);
-	}
-
-	end_screen();
-
-	/* Let's see where our guy ended up! */
-	pong_status(_pong);
-
-	pong_destroy(_pong);
-
-	return 0;
-}
-
-void init_screen(struct Pong* _pong)
-{
-	// Create NCURSES Screen
 	initscr();
+
 	noecho();
 	curs_set(FALSE);
 
-	// Initialize x/y border max
-	getmaxyx( stdscr, _pong->max_y, _pong->max_x );
-}
+	// Get max Window dimensions
+	getmaxyx(stdscr, parent_y, parent_x);
 
-struct Pong *pong_create(	int x, int y,
-				int max_x, int max_y,
-				int next_x, int next_y,
-				int x_direction, int y_direction,
-				char element[PONG_ELEMENT_SIZE] )
-{
-	struct Pong *_pong = malloc(sizeof(struct Pong));
+	// Set up Windows
+	WINDOW* field = newwin(parent_y - SCORE_SIZE, parent_x, SCORE_SIZE, 0);
+	WINDOW* score = newwin(SCORE_SIZE, parent_x, 0, 0);
 
-	assert(_pong != NULL);
+	while(1) 
+	{
+		getmaxyx(stdscr, new_y, new_x);
+		// Init Ball dimensions within Field
+		getmaxyx( field, _ball->max_y, _ball->max_x );
 
-	_pong->x 		= x;
-	_pong->y 		= y;
-	_pong->max_x		= max_x;
-	_pong->max_y		= max_y;
-	_pong->next_x 		= next_x;
-	_pong->next_y 		= next_y;
-	_pong->x_direction 	= x_direction;
-	_pong->y_direction 	= y_direction;
+		_ball->max_y -= (BORDER_Y_SIZE * 2);
+		_ball->max_x -= (BORDER_X_SIZE * 2);
+	
+		if(new_y != parent_y || new_x != parent_x) {
+			parent_x = new_x;
+			parent_y = new_y;
 
-	strcpy(_pong->element, element);
+			wresize(field, new_y - SCORE_SIZE, new_x);
+			wresize(score, new_y - SCORE_SIZE, 0);
+			refresh();
 
-	return _pong;
-}
+			draw_borders(field);
+			draw_borders(score);
 
-void pong_next(struct Pong* _pong)
-{
-	_pong->next_x = _pong->x + _pong->x_direction;
-	_pong->next_y = _pong->y + _pong->y_direction;
+			wclear(stdscr);
+			wclear(field);
+			wclear(score);
+		}
 
-	// Calculate for x-axis
-	if(_pong->next_x >= _pong->max_x || _pong->next_x < 0) {
-		_pong->x_direction *= -1;
-	} else {
-		_pong->x += _pong->x_direction;
+		// Draw to windows (This is where we write to "Field" in play mode)
+		mvwprintw(field, 1, 1, "FIELD"); // Replace with PONG
+
+		// Draw divider line:
+
+		for(i = 0; i < parent_y - SCORE_SIZE - 2; ++i)
+		{
+			mvwprintw(field, i + SCORE_SIZE - 2, (int)(parent_x / 2), "|");
+		}
+
+		mvwprintw(score, 1, 1, "SCORE");
+
+		mvwprintw(score, 1, (int)(parent_x / 2) - 5, "01");
+		mvwprintw(score, 1, (int)(parent_x / 2) + 5, "02");
+		mvwprintw(score, 1, (int)(parent_x / 2), "|");
+
+#if DEBUG_POSITION	
+		snprintf(status, sizeof(status), "%d,%d", _ball->x, _ball->y);
+		mvwprintw(stdscr, 1, 8, status );
+#endif
+	
+		usleep(DELAY);
+
+		ball_next(_ball);
+		mvprintw( _ball->y + BORDER_Y_SIZE + SCORE_SIZE, _ball->x + BORDER_X_SIZE, _ball->element );
+
+		// Refresh
+		wrefresh(field);
+		wrefresh(score);
+
+		refresh();
+
+		draw_borders(field);
+		draw_borders(score);
 	}
 
-	// Calculate for y-axis
-	if(_pong->next_y >= _pong->max_y || _pong->next_y < 0) {
-		_pong->y_direction *= -1;
-	} else {
-		_pong->y += _pong->y_direction;
-	}
 
-}
+	delwin(field);
+	delwin(score);
 
-void pong_status(struct Pong* _pong)
-{
-	printf("\nx, y: (%d, %d)\n", _pong->x, _pong->y);
-	printf("\nnext_x, next_y: (%d, %d)\n", _pong->next_x, _pong->next_y);
-	printf("\nmax_x: %d, max_y: %d\n", _pong->max_x, _pong->max_y);
-	printf("x axis direction: %s\n", _pong->x_direction < 0 ? "backwards" : "forwards");
-	printf("y axis direction: %s\n", _pong->y_direction < 0 ? "backwards" : "forwards");
-}
+	ball_status(_ball);
 
-void pong_destroy(struct Pong* _pong)
-{
-	// Release "malloc" allocated memory
-	assert(_pong != NULL);
-	free(_pong);
-}
+	ball_destroy(_ball);
 
-void end_screen()
-{
-	// End screen, window clean-up
+	
+
 	endwin();
+	
+	return 0;
 }
 
