@@ -1,3 +1,4 @@
 *.swp
 *.dSYM
 bin
+src/obj
