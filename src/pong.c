@@ -14,12 +14,19 @@
 
 #include "include/field.h"
 #include "include/ball.h"
+#include "include/user.h"
 
 int main(int argc, char *argv[]) 
 {
 	int parent_x, parent_y, new_x, new_y;
 	int i;
-	struct Ball* _ball = ball_create( 0, 0, 50, 50, 0, 0, 1, 1, "*" );
+
+	struct Ball* _ball = ball_create( 10, 10, 50, 50, 0, 0, 1, 1, "*" );
+	struct User* _user_1 = user_create(0, "User 1");
+	struct User* _user_2 = user_create(0, "User 2");
+
+	char score_1[3];
+	char score_2[3];
 
 #if DEBUG_POSITION
 	char status[10];
@@ -45,7 +52,7 @@ int main(int argc, char *argv[])
 
 		_ball->max_y -= (BORDER_Y_SIZE * 2);
 		_ball->max_x -= (BORDER_X_SIZE * 2);
-	
+
 		if(new_y != parent_y || new_x != parent_x) {
 			parent_x = new_x;
 			parent_y = new_y;
@@ -62,9 +69,6 @@ int main(int argc, char *argv[])
 			wclear(score);
 		}
 
-		// Draw to windows (This is where we write to "Field" in play mode)
-		mvwprintw(field, 1, 1, "FIELD"); // Replace with PONG
-
 		// Draw divider line:
 
 		for(i = 0; i < parent_y - SCORE_SIZE - 2; ++i)
@@ -72,21 +76,36 @@ int main(int argc, char *argv[])
 			mvwprintw(field, i + SCORE_SIZE - 2, (int)(parent_x / 2), "|");
 		}
 
-		mvwprintw(score, 1, 1, "SCORE");
-
-		mvwprintw(score, 1, (int)(parent_x / 2) - 5, "01");
-		mvwprintw(score, 1, (int)(parent_x / 2) + 5, "02");
-		mvwprintw(score, 1, (int)(parent_x / 2), "|");
 
 #if DEBUG_POSITION	
 		snprintf(status, sizeof(status), "%d,%d", _ball->x, _ball->y);
-		mvwprintw(stdscr, 1, 8, status );
+		mvwprintw(stdscr, SCORE_SIZE + 1, BORDER_X_SIZE + 1, status );
 #endif
 	
 		usleep(DELAY);
 
 		ball_next(_ball);
+
 		mvprintw( _ball->y + BORDER_Y_SIZE + SCORE_SIZE, _ball->x + BORDER_X_SIZE, _ball->element );
+
+		if(_ball->next_x == _ball->max_x - BORDER_Y_SIZE)
+			_user_1->score++;
+
+		if(_ball->next_x < 0)
+			_user_2->score++;
+
+		// Get current scores:
+	
+		snprintf(score_1, 3, "%d", _user_1->score);
+		snprintf(score_2, 3, "%d", _user_2->score);
+
+		mvwprintw(score, 1, (int)(parent_x / 2) - 5, score_1);
+		mvwprintw(score, 1, (int)(parent_x / 2) + 5, score_2);
+		mvwprintw(score, 1, (int)(parent_x / 2), "|");
+
+		mvwprintw(score, 1, (BORDER_Y_SIZE * 2), _user_1->username);
+		mvwprintw(score, 1, parent_x - strlen(_user_2->username) - (BORDER_Y_SIZE * 2), _user_2->username);
+
 
 		// Refresh
 		wrefresh(field);
@@ -101,14 +120,15 @@ int main(int argc, char *argv[])
 
 	delwin(field);
 	delwin(score);
+	endwin();
 
 	ball_status(_ball);
 
+	/* CLEANUP */
 	ball_destroy(_ball);
+	user_destroy(_user_1);
+	user_destroy(_user_2);
 
-	
-
-	endwin();
 	
 	return 0;
 }

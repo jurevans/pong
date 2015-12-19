@@ -20,7 +20,7 @@ void init_screen(struct Ball* _ball)
 	getmaxyx( stdscr, _ball->max_y, _ball->max_x );
 }
 
-struct Ball *ball_create(	int x, int y,
+struct Ball* ball_create(	int x, int y,
 				int max_x, int max_y,
 				int next_x, int next_y,
 				int x_direction, int y_direction,

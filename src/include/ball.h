@@ -2,8 +2,8 @@
  * Library header for ball in Pong game, balllib.c
  */
 
-#ifndef __BALLLIB_H__
-#define __BALLLIB_H__
+#ifndef __BALL_H__
+#define __BALL_H__
 
 	/* CONSTANTS */
 
@@ -12,7 +12,7 @@
 	#endif
 
 	#ifndef DEBUG_POSITION
-	#define DEBUG_POSITION	1
+	#define DEBUG_POSITION	0
 	#endif
 
 	#define BALL_ELEMENT_SIZE 1

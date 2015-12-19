@@ -1,8 +1,8 @@
 /* fieldlib.h */
 /* Library header for "fieldlib.c" */
 
-#ifndef __FIELDLIB_H_
-#define __FIELDLIB_H_
+#ifndef __FIELD_H_
+#define __FIELD_H_
 
 	/* INCLUDES */
 
