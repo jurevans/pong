@@ -11,12 +11,13 @@
 
 #include "include/user.h"
 
-struct User* user_create( int score, char username[15] )
+struct User* user_create( int score, char* username, int turn)
 {
 	struct User* _user = malloc(sizeof(struct User));
 
 	assert(_user != NULL);
 
+	_user->turn = turn;
 	_user->score = score;
 
 	strcpy(_user->username, username);
