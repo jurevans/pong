@@ -9,17 +9,6 @@
 #include "include/ball.h"
 #include "include/field.h"
 
-void init_screen(struct Ball* _ball)
-{
-	// Create NCURSES Screen
-	initscr();
-	noecho();
-	curs_set(FALSE);
-
-	// Initialize x/y border max
-	getmaxyx( stdscr, _ball->max_y, _ball->max_x );
-}
-
 struct Ball* ball_create(	int x, int y,
 				int max_x, int max_y,
 				int next_x, int next_y,
@@ -79,11 +68,5 @@ void ball_destroy(struct Ball* _ball)
 	// Release "malloc" allocated memory
 	assert(_ball != NULL);
 	free(_ball);
-}
-
-void end_screen()
-{
-	// End screen, window clean-up
-	endwin();
 }
 

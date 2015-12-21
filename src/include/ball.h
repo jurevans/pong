@@ -41,8 +41,4 @@
 	extern void ball_next( struct Ball* _ball );
 	extern void ball_status( struct Ball* _ball );
 	extern void ball_destroy( struct Ball* _ball );
-
-	extern void init_screen( struct Ball* _ball );
-	extern void end_screen(void);
-
 #endif
