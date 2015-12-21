@@ -35,12 +35,16 @@ int main(int argc, char *argv[])
 	char status[10];
 #endif
 
+	/* REGISTER -- Perhaps part of user_create() ??? */
+	/* Also, need to be able to select 1 or 2 player */
+	system("clear");
 	printf("\nEnter username for Player 1: ");
 	scanf("%s", _user_1->username);
+	system("clear");
 	printf("\nEnter username for Player 2: ");
 	scanf("%s", _user_2->username);
 	printf("\n");
-
+	system("clear");
 
 	// BEGIN PONG
 	initscr();
@@ -193,13 +197,6 @@ int main(int argc, char *argv[])
          *  - Score
          *  - Replay/Exit
          */
-/*
-	char* winner = (_user_1->score > _user_2->score) ? _user_1->username : _user_2->username;
-	char* message = "";
-
-	strcpy(message, winner);
-	strcpy(message, " WINS!");
-*/
 
 	mvwprintw(outro, (int)(parent_y / 2), (int)(parent_x / 2) - (int)(strlen("GAME OVER") / 2), "GAME OVER");
 	wrefresh(outro);
@@ -208,19 +205,20 @@ int main(int argc, char *argv[])
 	delwin(outro);
 	wclear(stdscr);
 
-
-
+	/* Clean up field and score windows, end window */
 	delwin(field);
 	delwin(score);
 	endwin();
 
-	ball_status(_ball);
+	/* If curious... */
+	// ball_status(_ball);
 
 	/* CLEANUP */
+	/* Consolidate these into a reference stack then DEALLOC all MALLOC variables registered!!! */
 	ball_destroy(_ball);
 	user_destroy(_user_1);
 	user_destroy(_user_2);
-	
+
 	return 0;
 }
 
