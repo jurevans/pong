@@ -9,13 +9,13 @@ OBJ	= $(SRC)obj/
 INCLUDES= -I .$(SRC)include -I../include
 MAIN	= pong
 BIN	= ./bin/
-OBJS	= ball.o field.o user.o
+OBJS	= ball.o field.o user.o paddle.o
 LINK	= -lcurses
 
 default: pong
 
 pong:	$(OBJS)
-	mkdir -p bin &&  $(CC) -o $(BIN)$(MAIN) $(SRC)pong.c $(OBJ)ball.o $(OBJ)field.o $(OBJ)user.o $(CFLAGS) $(LINK)
+	mkdir -p bin &&  $(CC) -o $(BIN)$(MAIN) $(SRC)pong.c $(OBJ)ball.o $(OBJ)field.o $(OBJ)user.o $(OBJ)paddle.o $(CFLAGS) $(LINK)
 
 ball.o:
 	mkdir -p src/obj && $(CC) $(CFLAGS) -c $(SRC)ball.c -o $(OBJ)ball.o
@@ -26,6 +26,8 @@ field.o:
 user.o:
 	mkdir -p src/obj && $(CC) $(CFLAGS) -c $(SRC)user.c -o $(OBJ)user.o
 
+paddle.o:
+	mkdir -p src/obj && $(CC) $(CFLAGS) -c $(SRC)paddle.c -o $(OBJ)paddle.o
 
 ##################################################################################
 
@@ -42,5 +44,3 @@ uninstall:
 	rm -fv /usr/local/bin/$(MAIN)
 
 #############################
-
-# DO NOT DELETE THIS LINE -- make depend needs it
