@@ -1,4 +1,4 @@
-/* playing_field.c - Library for drawing borders/Windows */
+/* field.c - Library for drawing borders/Windows */
 
 #include <unistd.h>
 #include "include/field.h"

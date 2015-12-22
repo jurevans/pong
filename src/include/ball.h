@@ -1,5 +1,5 @@
-/* balllib.h
- * Library header for ball in Pong game, balllib.c
+/* ball.h
+ * Library header for ball in Pong game, ball.c
  */
 
 #ifndef __BALL_H__

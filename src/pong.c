@@ -16,6 +16,7 @@
 #include "include/ball.h"
 #include "include/user.h"
 #include "include/paddle.h"
+#include "include/screen.h"
 
 int main(int argc, char *argv[]) 
 {
@@ -64,19 +65,7 @@ int main(int argc, char *argv[])
 	WINDOW* field = newwin(parent_y - SCORE_SIZE, parent_x, SCORE_SIZE, 0);
 	WINDOW* score = newwin(SCORE_SIZE, parent_x, 0, 0);
 
-	// Intro
-
-	/* SEPARATE THE FOLLOWING INTO SEPERATE FUNCTION FOR DRAWING SCREENS
-         *  - Intro
-         *  - Score
-         *  - Replay/Exit
-         */
-	mvwprintw(intro, (int)(parent_y / 2), (int)(parent_x / 2) - (int)(strlen("PONG") / 2), "PONG");
-	wrefresh(intro);
-	sleep(2);
-	wclear(intro);
-	delwin(intro);
-	wclear(stdscr);
+	screen_draw(intro, "PONG");
 
 	// Main game loop
 	while( _user_1->score < MAX_SCORE && _user_2->score < MAX_SCORE ) 
@@ -192,18 +181,7 @@ int main(int argc, char *argv[])
 
 	// Outro
 
-	/* SEPARATE THE FOLLOWING INTO SEPERATE FUNCTION FOR DRAWING SCREENS
-         *  - Intro
-         *  - Score
-         *  - Replay/Exit
-         */
-
-	mvwprintw(outro, (int)(parent_y / 2), (int)(parent_x / 2) - (int)(strlen("GAME OVER") / 2), "GAME OVER");
-	wrefresh(outro);
-	sleep(2);
-	wclear(outro);
-	delwin(outro);
-	wclear(stdscr);
+	screen_draw(outro, "GAME OVER");
 
 	/* Clean up field and score windows, end window */
 	delwin(field);
