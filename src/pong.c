@@ -179,13 +179,16 @@ int main(int argc, char *argv[])
 		draw_borders(score);
 	}
 
-	// Outro
-
-	screen_draw(outro, "GAME OVER");
-
 	/* Clean up field and score windows, end window */
+
 	delwin(field);
 	delwin(score);
+
+	// Outro
+
+	wclear(stdscr);
+	screen_draw(outro, "GAME OVER");
+
 	endwin();
 
 	/* If curious... */

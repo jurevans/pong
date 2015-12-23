@@ -19,6 +19,10 @@ void screen_draw(WINDOW* screen, char* message)
 	int x_offset = (int)(max_x / X_Y_OFFSET);
 	int y_offset = (int)(max_y / X_Y_OFFSET);
 
+	next_x = x_offset;
+	next_y = y_offset;
+
+	// Place text in center of screen
 	mvwprintw(screen, (int)(max_y / 2), (int)(max_x / 2) - (int)(strlen(message) / 2), message);
 	wrefresh(screen);
 	
@@ -29,47 +33,47 @@ void screen_draw(WINDOW* screen, char* message)
 	// TOP
 	for( i = 1; i < (max_x - (int)(x_offset * 2)); ++i )
 	{
-		next_x = x_offset + i;
-
 		mvwprintw(screen, y_offset, next_x, x_char);
 		wrefresh(screen);
+
+		next_x++;
 
 		usleep(CHAR_PRINT_DELAY);
 	}
 
 	// RIGHT
 	
-	for( i = 1; i < (max_y - (int)(y_offset * 2) + strlen(x_char)); ++i )
+	for( i = 1; i < (max_y - (int)(y_offset * 2)) ; ++i )
 	{
-		next_y = y_offset + i;
+		next_y++;
 
 		mvwprintw(screen, next_y, next_x, y_char);
 		wrefresh(screen);
-		
+
 		usleep(CHAR_PRINT_DELAY);
 	}
 
 	// BOTTOM
 
-	for( i = 1; i < (max_x - (int)(x_offset * 2)); ++i )
+	for( i = 1; i < (max_x - (int)(x_offset * 2) + strlen(y_char)); ++i )
 	{
-		next_x = (x_offset * 3) - i;
 
 		mvwprintw(screen, next_y, next_x, x_char);
 		wrefresh(screen);
+		next_x--;
 
 		usleep(CHAR_PRINT_DELAY);
 	}
 
 	// LEFT
-	
-	for( i = 1; i < (max_y - (int)(y_offset * 2)); ++i )
+	next_x++;
+	for( i = 1; i < (max_y - (int)(y_offset * 2) - strlen(x_char)); ++i )
 	{
-		next_y = (y_offset * 3) - i;
+		next_y--;
 
 		mvwprintw(screen, next_y, next_x, y_char);
 		wrefresh(screen);
-		
+
 		usleep(CHAR_PRINT_DELAY);
 	}
 

@@ -5,7 +5,7 @@
 	/* CONSTANTS */
 
 	#ifndef MAX_SCORE
-	#define MAX_SCORE 2
+	#define MAX_SCORE 3
 	#endif
 
 	/* STRUCTURES */
