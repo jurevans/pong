@@ -5,6 +5,8 @@
 #ifndef __BALL_H__
 #define __BALL_H__
 
+	#include <string.h>
+
 	/* CONSTANTS */
 
 	#ifndef DELAY
@@ -15,7 +17,9 @@
 	#define DEBUG_POSITION	0
 	#endif
 
-	#define BALL_ELEMENT_SIZE 1
+	#ifndef BALL_STRING
+	#define BALL_STRING "*"
+	#endif
 
 	/* STRUCTURES */
 
@@ -28,7 +32,7 @@
 		int next_y;
 		int x_direction;
 		int y_direction;
-		char element[BALL_ELEMENT_SIZE];
+		char element[strlen(BALL_STRING)];
 	};
 
 	/* PROTOTYPES */
@@ -36,7 +40,7 @@
 	extern struct Ball* ball_create( int x, int y, 
 				  int max_x, int max_y,
 				  int next_x, int next_y, 
-				  int x_direction, int y_direction, char element[BALL_ELEMENT_SIZE] );
+				  int x_direction, int y_direction, char element[strlen(BALL_STRING)] );
 
 	extern void ball_next( struct Ball* _ball );
 	extern void ball_status( struct Ball* _ball );

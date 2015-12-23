@@ -31,12 +31,13 @@ void screen_draw(WINDOW* screen, char* message)
 	// Draw Sides
 
 	// TOP
-	for( i = 1; i < (max_x - (int)(x_offset * 2)); ++i )
+	for( i = 1; i < (max_x - (int)(x_offset * 2) + strlen(y_char)); ++i )
 	{
+		next_x++;
+
 		mvwprintw(screen, y_offset, next_x, x_char);
 		wrefresh(screen);
 
-		next_x++;
 
 		usleep(CHAR_PRINT_DELAY);
 	}
@@ -60,6 +61,7 @@ void screen_draw(WINDOW* screen, char* message)
 
 		mvwprintw(screen, next_y, next_x, x_char);
 		wrefresh(screen);
+
 		next_x--;
 
 		usleep(CHAR_PRINT_DELAY);
