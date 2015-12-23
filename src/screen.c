@@ -66,7 +66,9 @@ void screen_draw(WINDOW* screen, char* message)
 	}
 
 	// LEFT
-	next_x++;
+	
+	next_x += strlen(y_char);
+
 	for( i = 1; i < (max_y - (int)(y_offset * 2) - strlen(x_char)); ++i )
 	{
 		next_y--;

@@ -83,8 +83,8 @@ int main(int argc, char *argv[])
 		getmaxyx( field, _ball->max_y, _ball->max_x );
 
 		// Paddle height: ~33% height of field
-		_paddle_1->height = (int)(new_y - (BORDER_Y_SIZE * 2) / 3);
-		_paddle_2->height = (int)(new_y - (BORDER_Y_SIZE * 2) / 3);
+		_paddle_1->height = (int)(new_y - (BORDER_Y_SIZE * 2) / PADDLE_HEIGHT);
+		_paddle_2->height = (int)(new_y - (BORDER_Y_SIZE * 2) / PADDLE_HEIGHT);
 		
 
 		_ball->max_y -= (BORDER_Y_SIZE * 2);
@@ -107,7 +107,6 @@ int main(int argc, char *argv[])
 		}
 
 
-
 #if DEBUG_POSITION	
 		snprintf(status, sizeof(status), "%d,%d", _ball->x, _ball->y);
 		mvwprintw(stdscr, SCORE_SIZE + 1, BORDER_X_SIZE + 1, status );
@@ -119,19 +118,20 @@ int main(int argc, char *argv[])
 
 		mvprintw( _ball->y + BORDER_Y_SIZE + SCORE_SIZE, _ball->x + BORDER_X_SIZE, _ball->element );
 
-		_paddle_1->height = (int)(_ball->max_y / 3);
+		_paddle_1->height = (int)(_ball->max_y / PADDLE_HEIGHT);
 		_paddle_1->y_pos = (int)((int)(_ball->max_y / 2) - (int)(_paddle_1->height / 2));
 		_paddle_1->x_pos = BORDER_Y_SIZE;
 
 		paddle_draw(field, _paddle_1);
 
-		_paddle_2->height = (int)(_ball->max_y / 3);
+		_paddle_2->height = (int)(_ball->max_y / PADDLE_HEIGHT);
 		_paddle_2->y_pos = (int)((int)(_ball->max_y / 2) - (int)(_paddle_1->height / 2));
 		_paddle_2->x_pos = _ball->max_x - _paddle_2->width - BORDER_Y_SIZE;
 
 		paddle_draw(field, _paddle_2);
 
-
+		
+		// Did Player 1 score?
 		if(_ball->next_x == _ball->max_x - BORDER_Y_SIZE)
 		{
 			_user_1->score++;
@@ -144,6 +144,7 @@ int main(int argc, char *argv[])
 			_user_2->turn = 0;
 		}
 
+		// Did Player 2 score?
 		if(_ball->next_x < 0)
 		{
 			_user_2->score++;
@@ -187,6 +188,8 @@ int main(int argc, char *argv[])
 	// Outro
 
 	wclear(stdscr);
+	refresh();
+
 	screen_draw(outro, "GAME OVER");
 
 	endwin();
