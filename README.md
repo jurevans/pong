@@ -35,7 +35,7 @@ So, this version of Pong wasn't your cup of tea? Well, that's fine, I suppose. J
 
 As the code continues to grow, so will the documentation should it be formatted correctly. To generate the latest version of the docs, simply run:
 
-`doxygen Do
+`doxygen Doxyfile`
 
 ## Dependencies
 
