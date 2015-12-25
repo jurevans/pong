@@ -20,8 +20,11 @@
 
 int main(int argc, char *argv[]) 
 {
+	/* Max X, Y, Next X, Y */
 	int parent_x, parent_y, new_x, new_y;
 	int i;
+	/* Key character */
+	int key;
 
 	struct Ball* _ball = ball_create( 10, 10, 50, 50, 0, 0, 1, 1, "*" );
 	struct User* _user_1 = user_create(0, "Player 1", 1);
@@ -52,6 +55,7 @@ int main(int argc, char *argv[])
 
 	noecho();
 	curs_set(FALSE);
+	keypad(stdscr, TRUE); // For Mac OS X?
 
 	// Get max Window dimensions
 	getmaxyx(stdscr, parent_y, parent_x);
@@ -128,6 +132,12 @@ int main(int argc, char *argv[])
 		_paddle_2->x_pos = _ball->max_x - _paddle_2->width - BORDER_Y_SIZE;
 
 		paddle_draw(field, _paddle_2);
+
+		/* TODO */
+		/* Get key code EXAMPLE: */
+		/* key = getchar(); */
+
+		/* Does key == KEY_UP, KEY_DOWN, KEY_LEFT, KEY_RIGHT ? - These are defined in ncurses.h */
 		
 		// Did Player 1 score?
 		if(_ball->next_x == _ball->max_x - BORDER_Y_SIZE)
