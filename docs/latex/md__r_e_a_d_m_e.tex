@@ -1,15 +1,141 @@
-$\ast$$\ast$$\ast$\+Install$\ast$$\ast$$\ast$
+$\ast$$\ast$$\ast$\+Build$\ast$$\ast$$\ast$
 
 {\ttfamily make}
 
-And B\+A\+M! run {\ttfamily ./bin/pong} and enjoy your day.
+You can run this from the local {\ttfamily bin} directory via\+: {\ttfamily ./bin/pong}
 
--- J\+U\+S\+T\+I\+N E\+V\+A\+N\+S --
+$\ast$$\ast$$\ast$\+Install$\ast$$\ast$$\ast$
+
+{\ttfamily make install} (Or, depending on your permissions, {\ttfamily sudo make install}
+
+This will install {\ttfamily pong} to {\ttfamily /usr/local/bin/}. Update your executable path as needed.
+
+At this point, you may want to clean your local build files\+:
+
+{\ttfamily make clean}
+
+$\ast$$\ast$$\ast$\+Testing$\ast$$\ast$$\ast$
+
+{\ttfamily make test}
+
+This will run Valgrind tests while the program is executing (defaults to {\ttfamily valgrind ./bin/pong -\/-\/leak-\/check=full -\/v} (See {\ttfamily Makefile} for more info...)
+
+$\ast$$\ast$$\ast$\+Uninstall$\ast$$\ast$$\ast$
+
+So, this version of Pong wasn\textquotesingle{}t your cup of tea? Well, that\textquotesingle{}s fine, I suppose. Just run the following command and you will be rid of it for good! \+:-\/)
+
+{\ttfamily make uninstall}
+
+$\ast$$\ast$$\ast$\+Documentation$\ast$$\ast$$\ast$
+
+As the code continues to grow, so will the documentation should it be formatted correctly. To generate the latest version of the docs, simply run\+:
+
+{\ttfamily doxygen Doxyfile}
 
 \subsection*{Dependencies}
 
 
 \begin{DoxyItemize}
+\item \href{https://www.gnu.org/software/ncurses/}{\tt ncurses} -\/ ncurses (\char`\"{}new\char`\"{} curses -\/ be sure to install {\ttfamily ncurses.\+h} -\/ Many Debian/\+Ubuntu-\/based {\itshape Linux} distros package this in libncurses-\/dev)
 \item \href{http://valgrind.org/}{\tt Valgrind} -\/ Instrumentation Framework
-\item \href{http://www.stack.nl/~dimitri/doxygen/}{\tt Doxygen} -\/ Documentation 
+\item \href{http://www.stack.nl/~dimitri/doxygen/}{\tt Doxygen} -\/ Documentation
 \end{DoxyItemize}
+
+-- J\+U\+S\+T\+I\+N R. E\+V\+A\+N\+S --
+
+\href{mailto:jurevans@gmail.com}{\tt jurevans@gmail.\+com}
+
+\href{http://fullstackconsultancy.net/}{\tt http\+://fullstackconsultancy.\+net/}
+
+\section*{Additional Notes }
+
+File structure\+:
+
+
+\begin{DoxyCode}
+1 .
+2 |── Doxyfile
+3 ├── Makefile
+4 ├── README.md
+5 ├── bin
+6 │   ├── pong
+7 │   └── pong.dSYM
+8 │       └── Contents
+9 │           ├── Info.plist
+10 │           └── Resources
+11 │               └── DWARF
+12 │                   └── pong
+13 ├── docs
+14 │   ├── html
+15 │   │   ├── arrowdown.png
+16 │   │   ├── arrowright.png
+17 │   │   ├── bc\_s.png
+18 │   │   ├── bdwn.png
+19 │   │   ├── closed.png
+20 │   │   ├── doc.png
+21 │   │   ├── doxygen.css
+22 │   │   ├── doxygen.png
+23 │   │   ├── dynsections.js
+24 │   │   ├── folderclosed.png
+25 │   │   ├── folderopen.png
+26 │   │   ├── index.html
+27 │   │   ├── jquery.js
+28 │   │   ├── md\_\_r\_e\_a\_d\_m\_e.html
+29 │   │   ├── nav\_f.png
+30 │   │   ├── nav\_g.png
+31 │   │   ├── nav\_h.png
+32 │   │   ├── open.png
+33 │   │   ├── pages.html
+34 │   │   ├── search
+35 │   │   │   ├── all\_0.html
+36 │   │   │   ├── all\_0.js
+37 │   │   │   ├── close.png
+38 │   │   │   ├── mag\_sel.png
+39 │   │   │   ├── nomatches.html
+40 │   │   │   ├── pages\_0.html
+41 │   │   │   ├── pages\_0.js
+42 │   │   │   ├── search.css
+43 │   │   │   ├── search.js
+44 │   │   │   ├── search\_l.png
+45 │   │   │   ├── search\_m.png
+46 │   │   │   ├── search\_r.png
+47 │   │   │   └── searchdata.js
+48 │   │   ├── splitbar.png
+49 │   │   ├── sync\_off.png
+50 │   │   ├── sync\_on.png
+51 │   │   ├── tab\_a.png
+52 │   │   ├── tab\_b.png
+53 │   │   ├── tab\_h.png
+54 │   │   ├── tab\_s.png
+55 │   │   └── tabs.css
+56 │   └── latex
+57 │       ├── Makefile
+58 │       ├── doxygen.sty
+59 │       ├── md\_\_r\_e\_a\_d\_m\_e.tex
+60 │       └── refman.tex
+61 ├── lib
+62 ├── src
+63 │   ├── ball.c
+64 │   ├── field.c
+65 │   ├── include
+66 │   │   ├── ball.h
+67 │   │   ├── field.h
+68 │   │   ├── paddle.h
+69 │   │   ├── screen.h
+70 │   │   └── user.h
+71 │   ├── obj
+72 │   │   ├── ball.o
+73 │   │   ├── field.o
+74 │   │   ├── paddle.o
+75 │   │   ├── screen.o
+76 │   │   └── user.o
+77 │   ├── paddle.c
+78 │   ├── pong.c
+79 │   ├── screen.c
+80 │   └── user.c
+81 └── tests
+82     └── TESTS.md
+\end{DoxyCode}
+
+
+Enjoy! 
