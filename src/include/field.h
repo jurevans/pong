@@ -1,5 +1,5 @@
-/* fieldlib.h */
-/* Library header for "fieldlib.c" */
+/* field.h */
+/* Library header for "field.c" */
 
 #ifndef __FIELD_H_
 #define __FIELD_H_

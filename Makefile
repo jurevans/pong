@@ -9,13 +9,13 @@ OBJ	= $(SRC)obj/
 INCLUDES= -I .$(SRC)include -I../include
 MAIN	= pong
 BIN	= ./bin/
-OBJS	= ball.o field.o user.o paddle.o
+OBJS	= ball.o field.o user.o paddle.o screen.o
 LINK	= -lcurses
 
 default: pong
 
 pong:	$(OBJS)
-	mkdir -p bin &&  $(CC) -o $(BIN)$(MAIN) $(SRC)pong.c $(OBJ)ball.o $(OBJ)field.o $(OBJ)user.o $(OBJ)paddle.o $(CFLAGS) $(LINK)
+	mkdir -p bin &&  $(CC) -o $(BIN)$(MAIN) $(SRC)pong.c $(OBJ)ball.o $(OBJ)field.o $(OBJ)user.o $(OBJ)paddle.o $(OBJ)screen.o $(CFLAGS) $(LINK)
 
 ball.o:
 	mkdir -p src/obj && $(CC) $(CFLAGS) -c $(SRC)ball.c -o $(OBJ)ball.o
@@ -28,6 +28,9 @@ user.o:
 
 paddle.o:
 	mkdir -p src/obj && $(CC) $(CFLAGS) -c $(SRC)paddle.c -o $(OBJ)paddle.o
+
+screen.o:
+	mkdir -p src/obj && $(CC) $(CFLAGS) -c $(SRC)screen.c -o $(OBJ)screen.o
 
 ##################################################################################
 

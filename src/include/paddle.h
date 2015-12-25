@@ -8,6 +8,11 @@
 	#define PADDLE_CHAR "|"
 	#endif
 
+	// Paddle Height is determined by MAX_Y / PADDLE_HEIGHT
+	#ifndef PADDLE_HEIGHT
+	#define PADDLE_HEIGHT 4
+	#endif
+
 	#include <ncurses.h>
 
 	/* STRUCTURES */

@@ -9,11 +9,12 @@
 #include "include/ball.h"
 #include "include/field.h"
 
+
 struct Ball* ball_create(	int x, int y,
 				int max_x, int max_y,
 				int next_x, int next_y,
 				int x_direction, int y_direction,
-				char element[BALL_ELEMENT_SIZE] )
+				char element[strlen(BALL_STRING)] )
 {
 	struct Ball *_ball = malloc(sizeof(struct Ball));
 
