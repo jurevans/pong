@@ -24,8 +24,8 @@ int main(int argc, char *argv[])
 	int i;
 
 	struct Ball* _ball = ball_create( 10, 10, 50, 50, 0, 0, 1, 1, "*" );
-	struct User* _user_1 = user_create(0, "User 1", 1);
-	struct User* _user_2 = user_create(0, "User 2", 0);
+	struct User* _user_1 = user_create(0, "Player 1", 1);
+	struct User* _user_2 = user_create(0, "Player 2", 0);
 	struct Paddle* _paddle_1 = paddle_create(0, 0, 0, 2, PADDLE_CHAR);
 	struct Paddle* _paddle_2 = paddle_create(0, 0, 0, 2, PADDLE_CHAR);
 
@@ -85,7 +85,6 @@ int main(int argc, char *argv[])
 		// Paddle height: ~33% height of field
 		_paddle_1->height = (int)(new_y - (BORDER_Y_SIZE * 2) / PADDLE_HEIGHT);
 		_paddle_2->height = (int)(new_y - (BORDER_Y_SIZE * 2) / PADDLE_HEIGHT);
-		
 
 		_ball->max_y -= (BORDER_Y_SIZE * 2);
 		_ball->max_x -= (BORDER_X_SIZE * 2);
@@ -129,14 +128,12 @@ int main(int argc, char *argv[])
 		_paddle_2->x_pos = _ball->max_x - _paddle_2->width - BORDER_Y_SIZE;
 
 		paddle_draw(field, _paddle_2);
-
 		
 		// Did Player 1 score?
 		if(_ball->next_x == _ball->max_x - BORDER_Y_SIZE)
 		{
 			_user_1->score++;
 
-			
 			_ball->y = 0;
 			_ball->x = 0;
 
@@ -154,7 +151,6 @@ int main(int argc, char *argv[])
 
 			_user_2->turn = 1;
 			_user_1->turn = 0;
-
 		}
 
 		// Get current scores:
