@@ -18,15 +18,12 @@ At this point, you may want to clean your local build files:
 
 `make clean`
 
-Alternatively, you may just want to enter a single command, depending on your level of confidence:
-
-`make && make install && make clean`
-
 ***Testing***
+
 
 `make test`
 
-This will run Valgrind memory tests (defaults to `valgrind ./bin/pong --leak-check=full -v` (See `Makefile` for more info...)
+This will run Valgrind tests while the program is executing (defaults to `valgrind ./bin/pong --leak-check=full -v` (See `Makefile` for more info...)
 
 ***Uninstall***
 
