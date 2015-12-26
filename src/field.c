@@ -26,7 +26,7 @@ void draw_borders(WINDOW *screen)
 
 	// Draw Top/Bottom
 
-	for( i = 1; i < (x - 1); ++i)
+	for( i = 1; i < (x - 1); ++i )
 	{
 		mvwprintw(screen, 0, i, BORDERS_X);
 		mvwprintw(screen, y - 1, i, BORDERS_X);
