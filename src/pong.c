@@ -20,11 +20,8 @@
 
 int main(int argc, char *argv[]) 
 {
-	/* Max X, Y, Next X, Y */
 	int parent_x, parent_y, new_x, new_y;
 	int i;
-	/* Key character */
-	int key;
 
 	struct Ball* _ball = ball_create( 10, 10, 50, 50, 0, 0, 1, 1, "*" );
 	struct User* _user_1 = user_create(0, "Player 1", 1);
@@ -122,23 +119,17 @@ int main(int argc, char *argv[])
 		mvprintw( _ball->y + BORDER_Y_SIZE + SCORE_SIZE, _ball->x + BORDER_X_SIZE, _ball->element );
 
 		_paddle_1->height = (int)(_ball->max_y / PADDLE_HEIGHT);
-		_paddle_1->y_pos = (int)((int)(_ball->max_y / 2) - (int)(_paddle_1->height / 2));
 		_paddle_1->x_pos = BORDER_Y_SIZE;
+		_paddle_1->y_pos = (int)((int)(_ball->max_y / 2) - (int)(_paddle_1->height / 2));
 
 		paddle_draw(field, _paddle_1);
 
 		_paddle_2->height = (int)(_ball->max_y / PADDLE_HEIGHT);
-		_paddle_2->y_pos = (int)((int)(_ball->max_y / 2) - (int)(_paddle_1->height / 2));
 		_paddle_2->x_pos = _ball->max_x - _paddle_2->width - BORDER_Y_SIZE;
+		_paddle_2->y_pos = (int)((int)(_ball->max_y / 2) - (int)(_paddle_1->height / 2));
 
 		paddle_draw(field, _paddle_2);
 
-		/* TODO */
-		/* Get key code EXAMPLE: */
-		/* key = getchar(); */
-
-		/* Does key == KEY_UP, KEY_DOWN, KEY_LEFT, KEY_RIGHT ? - These are defined in ncurses.h */
-		
 		// Did Player 1 score?
 		if(_ball->next_x == _ball->max_x - BORDER_Y_SIZE)
 		{
