@@ -90,11 +90,14 @@ int main(int argc, char *argv[])
 
 			if( key == KEY_UP ) {
 				_paddle_1->y_pos--;
-
+				wclear(field);
+				divider_draw( field );
 			}
 
 			if( key == KEY_DOWN ) {
 				_paddle_1->y_pos++;
+				wclear(field);
+				divider_draw( field );
 			}
 		}
 
