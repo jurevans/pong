@@ -131,13 +131,14 @@ int main(int argc, char *argv[])
 		mvwprintw(stdscr, SCORE_SIZE + 1, BORDER_X_SIZE + 1, status );
 #endif
 
+		/* Wait for just a [usleep amount of DELAY] */
 		usleep(DELAY);
 
+		/* Print Pong at next location */
 		ball_next(_ball);
-
 		mvprintw( _ball->y + BORDER_Y_SIZE + SCORE_SIZE, _ball->x + BORDER_X_SIZE, _ball->element );
 		
-		// Did Player 1 score?
+		/* Did Player 1 score? */
 		if(_ball->next_x == _ball->max_x - BORDER_Y_SIZE)
 		{
 			_user_1->score++;
@@ -149,7 +150,7 @@ int main(int argc, char *argv[])
 			_user_2->turn = 0;
 		}
 
-		// Did Player 2 score?
+		/* Did Player 2 score? */
 		if(_ball->next_x < 0)
 		{
 			_user_2->score++;
@@ -161,8 +162,7 @@ int main(int argc, char *argv[])
 			_user_1->turn = 0;
 		}
 
-		// Get current scores:
-	
+		/* Get and print current scores: */
 		snprintf(score_1, 3, "%d", _user_1->score);
 		snprintf(score_2, 3, "%d", _user_2->score);
 

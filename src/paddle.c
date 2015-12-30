@@ -30,7 +30,7 @@ struct Paddle* paddle_create( int x_pos, int y_pos, int height, int width, char 
 /* paddle_draw
  * WINDOW* field
  * struct Paddle*
- * int x_pos (1 or not 1)
+ * int x_pos (1 or not 1 - determines LEFT or RIGHT)
  */
 
 void paddle_draw( WINDOW* field, struct Paddle* _paddle, int x_pos )
@@ -49,7 +49,7 @@ void paddle_draw( WINDOW* field, struct Paddle* _paddle, int x_pos )
 		_paddle->x_pos = field_max_x - _paddle->width - (BORDER_Y_SIZE * 3);
 	}
 
-	/* Draw */
+	/* Draw Paddle */
 	for(i = 0; i < _paddle->height; i++)
 	{
 		for(j = 0; j < _paddle->width; j++)
