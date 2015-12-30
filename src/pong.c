@@ -112,6 +112,13 @@ int main(int argc, char *argv[])
 			wclear(score);
 		}
 
+		/* PADDLE - PLAYER 1 */
+
+		/* 
+			Basically, we need to initialize the paddles, 
+			use PERSISTANCE, and update HERE:
+		*/
+
 		_paddle_1->height = (int)(_ball->max_y / PADDLE_HEIGHT);
 		_paddle_1->x_pos = BORDER_Y_SIZE;
 		_paddle_1->y_pos = (int)((int)(_ball->max_y / 2) - (int)(_paddle_1->height / 2)) - 1;
@@ -119,15 +126,17 @@ int main(int argc, char *argv[])
 			key = getch();
 
 			if( key == KEY_UP ) {
-				mvwprintw(stdscr, SCORE_SIZE + 1, BORDER_X_SIZE + 1, "KEY UP" );
+				mvwprintw(stdscr, SCORE_SIZE + 1, BORDER_X_SIZE + 1, "PADDLE UP" );
 			}
 
 			if( key == KEY_DOWN ) {
-				mvwprintw(stdscr, SCORE_SIZE + 1, BORDER_X_SIZE + 1, "KEY DOWN" );
+				mvwprintw(stdscr, SCORE_SIZE + 1, BORDER_X_SIZE + 1, "PADDLE DOWN" );
 			}
 		}
 
 		paddle_draw(field, _paddle_1);
+
+		/* PADDLE - PLAYER 2 */
 
 		_paddle_2->height = (int)(_ball->max_y / PADDLE_HEIGHT);
 		_paddle_2->x_pos = _ball->max_x - _paddle_2->width - BORDER_Y_SIZE;
