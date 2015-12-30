@@ -20,7 +20,8 @@
 
 	/* PROTOTYPES  */
 
-	extern void draw_borders(WINDOW *screen);
+	extern void borders_draw(WINDOW* screen);
+	extern void divider_draw(WINDOW* field); 
 
 	extern int key_pressed(void);
 

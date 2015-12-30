@@ -55,15 +55,6 @@ void ball_next(struct Ball* _ball)
 
 }
 
-void ball_status(struct Ball* _ball)
-{
-	printf("\nx, y: (%d, %d)\n", _ball->x, _ball->y);
-	printf("\nnext_x, next_y: (%d, %d)\n", _ball->next_x, _ball->next_y);
-	printf("\nmax_x: %d, max_y: %d\n", _ball->max_x, _ball->max_y);
-	printf("x axis direction: %s\n", _ball->x_direction < 0 ? "backwards" : "forwards");
-	printf("y axis direction: %s\n", _ball->y_direction < 0 ? "backwards" : "forwards");
-}
-
 void ball_destroy(struct Ball* _ball)
 {
 	// Release "malloc" allocated memory

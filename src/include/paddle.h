@@ -38,7 +38,7 @@
 					     int height, int width, 
 					     char* paddle_char );
 
-	extern void paddle_draw(WINDOW* screen, struct Paddle* paddle);
+	extern void paddle_draw( WINDOW* field, struct Paddle* paddle, int x_pos );
 
 	extern void paddle_destroy( struct Paddle* _paddle );
 

@@ -27,22 +27,39 @@ struct Paddle* paddle_create( int x_pos, int y_pos, int height, int width, char 
 	return _paddle;
 }
 
-void paddle_draw( WINDOW* screen, struct Paddle* _paddle )
+/* paddle_draw
+ * WINDOW* field
+ * struct Paddle*
+ * int x_pos (1 or not 1)
+ */
+
+void paddle_draw( WINDOW* field, struct Paddle* _paddle, int x_pos )
 {
 	int i, j;
+	int field_max_y, field_max_x;
 
+	getmaxyx( field, field_max_y, field_max_x );
 
+	_paddle->height = (int)(field_max_y / PADDLE_HEIGHT);
+
+	/* X position */
+	if(x_pos == 1) {
+		_paddle->x_pos = (BORDER_Y_SIZE * 2);
+	} else {
+		_paddle->x_pos = field_max_x - _paddle->width - (BORDER_Y_SIZE * 3);
+	}
+
+	/* Draw */
 	for(i = 0; i < _paddle->height; i++)
 	{
 		for(j = 0; j < _paddle->width; j++)
 		{
-			mvwprintw( screen, 
+			mvwprintw( field, 
 				   _paddle->y_pos + BORDER_Y_SIZE + i,
 				   _paddle->x_pos + BORDER_X_SIZE + j, 
 				   _paddle->paddle_char );
 		}
 	}
-
 }
 
 void paddle_destroy( struct Paddle* _paddle )

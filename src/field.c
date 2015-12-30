@@ -3,7 +3,7 @@
 #include <unistd.h>
 #include "include/field.h"
 
-void draw_borders(WINDOW *screen)
+void borders_draw(WINDOW* screen)
 {
 	int x, y, i;
 
@@ -44,3 +44,16 @@ int key_pressed(void)
 		return 0;
 	}
 }
+
+void divider_draw( WINDOW *field )
+{
+	int field_max_y, field_max_x, i;
+
+	getmaxyx( field, field_max_y, field_max_x );
+
+	for(i = 0; i < field_max_y - SCORE_SIZE + 1; ++i)
+	{
+		mvwprintw(field, i + SCORE_SIZE - 2, (int)(field_max_x / 2), "|");
+	}
+}
+
