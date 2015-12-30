@@ -14,7 +14,7 @@
 	#endif
 
 	#ifndef DEBUG_POSITION
-	#define DEBUG_POSITION	1
+	#define DEBUG_POSITION	0
 	#endif
 
 	#ifndef BALL_STRING
