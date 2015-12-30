@@ -21,7 +21,7 @@
 int main(int argc, char *argv[]) 
 {
 	int parent_x, parent_y, new_x, new_y;
-	int i;
+	int i, key;
 
 	struct Ball* _ball = ball_create( 10, 10, 50, 50, 0, 0, 1, 1, "*" );
 	struct User* _user_1 = user_create(0, "Player 1", 1);
@@ -42,17 +42,23 @@ int main(int argc, char *argv[])
 	printf("\nEnter username for Player 1: ");
 	scanf("%s", _user_1->username);
 	system("clear");
+/*	
+	// Let's disable player 2 for now...
+
 	printf("\nEnter username for Player 2: ");
 	scanf("%s", _user_2->username);
 	printf("\n");
 	system("clear");
-
+*/
 	// BEGIN PONG
 	initscr();
-
-	noecho();
+	cbreak();
+//	noecho();
+	echo();
+    	nodelay(stdscr, TRUE);
 	curs_set(FALSE);
 	keypad(stdscr, TRUE); // For Mac OS X?
+//    	scrollok(stdscr, TRUE);
 
 	// Get max Window dimensions
 	getmaxyx(stdscr, parent_y, parent_x);
@@ -106,21 +112,20 @@ int main(int argc, char *argv[])
 			wclear(score);
 		}
 
-
-#if DEBUG_POSITION	
-		snprintf(status, sizeof(status), "%d,%d", _ball->x, _ball->y);
-		mvwprintw(stdscr, SCORE_SIZE + 1, BORDER_X_SIZE + 1, status );
-#endif
-	
-		usleep(DELAY);
-
-		ball_next(_ball);
-
-		mvprintw( _ball->y + BORDER_Y_SIZE + SCORE_SIZE, _ball->x + BORDER_X_SIZE, _ball->element );
-
 		_paddle_1->height = (int)(_ball->max_y / PADDLE_HEIGHT);
 		_paddle_1->x_pos = BORDER_Y_SIZE;
-		_paddle_1->y_pos = (int)((int)(_ball->max_y / 2) - (int)(_paddle_1->height / 2));
+		_paddle_1->y_pos = (int)((int)(_ball->max_y / 2) - (int)(_paddle_1->height / 2)) - 1;
+		if( key_pressed() ) {
+			key = getch();
+
+			if( key == KEY_UP ) {
+				mvwprintw(stdscr, SCORE_SIZE + 1, BORDER_X_SIZE + 1, "KEY UP" );
+			}
+
+			if( key == KEY_DOWN ) {
+				mvwprintw(stdscr, SCORE_SIZE + 1, BORDER_X_SIZE + 1, "KEY DOWN" );
+			}
+		}
 
 		paddle_draw(field, _paddle_1);
 
@@ -130,6 +135,18 @@ int main(int argc, char *argv[])
 
 		paddle_draw(field, _paddle_2);
 
+
+#if DEBUG_POSITION	
+		snprintf(status, sizeof(status), "%d,%d", _ball->x, _ball->y);
+		mvwprintw(stdscr, SCORE_SIZE + 1, BORDER_X_SIZE + 1, status );
+#endif
+
+		usleep(DELAY);
+
+		ball_next(_ball);
+
+		mvprintw( _ball->y + BORDER_Y_SIZE + SCORE_SIZE, _ball->x + BORDER_X_SIZE, _ball->element );
+		
 		// Did Player 1 score?
 		if(_ball->next_x == _ball->max_x - BORDER_Y_SIZE)
 		{

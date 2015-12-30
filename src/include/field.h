@@ -22,4 +22,7 @@
 
 	extern void draw_borders(WINDOW *screen);
 
+	extern int key_pressed(void);
+
 #endif
+

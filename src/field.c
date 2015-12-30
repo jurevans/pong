@@ -32,3 +32,15 @@ void draw_borders(WINDOW *screen)
 		mvwprintw(screen, y - 1, i, BORDERS_X);
 	}
 }
+
+int key_pressed(void)
+{
+	int ch = getch();
+
+	if (ch != ERR) {
+		ungetch(ch);
+		return 1;
+	} else {
+		return 0;
+	}
+}
