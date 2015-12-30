@@ -89,13 +89,15 @@ int main(int argc, char *argv[])
 			key = getch();
 
 			if( key == KEY_UP ) {
-				_paddle_1->y_pos--;
+				_paddle_1->y_pos -= 2;
+
 				wclear(field);
 				divider_draw( field );
 			}
 
 			if( key == KEY_DOWN ) {
-				_paddle_1->y_pos++;
+				_paddle_1->y_pos += 2;
+
 				wclear(field);
 				divider_draw( field );
 			}
@@ -161,8 +163,8 @@ int main(int argc, char *argv[])
 			_ball->y = 0;
 			_ball->x = _ball->max_x - BORDER_X_SIZE;
 
-			_user_2->turn = 1;
 			_user_1->turn = 0;
+			_user_2->turn = 1;
 		}
 
 		/* Get and print current scores: */

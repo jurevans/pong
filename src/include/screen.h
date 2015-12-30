@@ -14,7 +14,7 @@
 	#endif
 
 	#ifndef CHAR_PRINT_DELAY
-	#define CHAR_PRINT_DELAY 10000 /* usleep(CHAR_PRINT_DELAY) */
+	#define CHAR_PRINT_DELAY 5000 /* usleep(CHAR_PRINT_DELAY) */
 	#endif
 
 	#ifndef PAUSE_SCREEN
