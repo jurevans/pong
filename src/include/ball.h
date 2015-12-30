@@ -14,7 +14,7 @@
 	#endif
 
 	#ifndef DEBUG_POSITION
-	#define DEBUG_POSITION	1
+	#define DEBUG_POSITION	0
 	#endif
 
 	#ifndef BALL_STRING
@@ -43,6 +43,5 @@
 				  int x_direction, int y_direction, char element[strlen(BALL_STRING)] );
 
 	extern void ball_next( struct Ball* _ball );
-	extern void ball_status( struct Ball* _ball );
 	extern void ball_destroy( struct Ball* _ball );
 #endif
