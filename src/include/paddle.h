@@ -8,13 +8,6 @@
 	#define PADDLE_CHAR "|"
 	#endif
 
-/*
-	Down Arrow  0x1B 0x5B 0x42 // getch(); // DOWN
-//	Left Arrow  0x1B 0x5B 0x44
-//	Right Arrow 0x1B 0x5B 0x43
-	Up Arrow    0x1B 0x5B 0x41 // getch(); // UP
-*/
-
 	// Paddle Height is determined by MAX_Y / PADDLE_HEIGHT
 	#ifndef PADDLE_HEIGHT
 	#define PADDLE_HEIGHT 4
