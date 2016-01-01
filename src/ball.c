@@ -52,7 +52,6 @@ void ball_next(struct Ball* _ball)
 	} else {
 		_ball->y += _ball->y_direction;
 	}
-
 }
 
 void ball_destroy(struct Ball* _ball)

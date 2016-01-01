@@ -11,6 +11,7 @@
 
 #include "include/field.h"
 #include "include/paddle.h"
+#include "include/ball.h"
 
 struct Paddle* paddle_create( int x_pos, int y_pos, int height, int width, char paddle_char[2] )
 {
@@ -67,5 +68,4 @@ void paddle_destroy( struct Paddle* _paddle )
 	assert(_paddle != NULL);
 	free(_paddle);
 }
-
 

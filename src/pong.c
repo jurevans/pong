@@ -25,7 +25,7 @@ int main(int argc, char *argv[])
 		key, 
 		field_max_x, field_max_y;
 
-	struct Ball* _ball = ball_create( 10, 10, 50, 50, 0, 0, 1, 1, "*" );
+	struct Ball* _ball = ball_create( SERVE_OFFSET_X, SERVE_OFFSET_Y, 50, 50, 0, 0, 1, 1, "*" );
 	struct User* _user_1 = user_create(0, "Player 1", 1);
 	struct User* _user_2 = user_create(0, "Player 2", 0);
 	struct Paddle* _paddle_1 = paddle_create(0, 0, 0, 2, PADDLE_CHAR);
@@ -90,6 +90,7 @@ int main(int argc, char *argv[])
 
 			if( key == KEY_UP ) {
 				_paddle_1->y_pos -= 2;
+				_paddle_2->y_pos += 2;
 
 				wclear(field);
 				divider_draw( field );
@@ -97,6 +98,7 @@ int main(int argc, char *argv[])
 
 			if( key == KEY_DOWN ) {
 				_paddle_1->y_pos += 2;
+				_paddle_2->y_pos -= 2;
 
 				wclear(field);
 				divider_draw( field );
@@ -143,6 +145,36 @@ int main(int argc, char *argv[])
 		ball_next(_ball);
 		mvprintw( _ball->y + BORDER_Y_SIZE + SCORE_SIZE, _ball->x + BORDER_X_SIZE, _ball->element );
 		
+		/* Detect Ball collision with Paddle 1 or 2 :: Determine turn for User 1 or 2 */
+		
+		// Check Paddle-LEFT
+
+		int i; // Determine x,y coordinate, Y is VARIABLE
+
+		for(i = _paddle_1->y_pos; i < _paddle_1->y_pos + _paddle_1->height; ++i)
+		{
+			if( (_ball->y == i) && (_ball->x == _paddle_1->x_pos + 2) )
+			{
+				_ball->x_direction *= -1; // switch directions!
+				
+				break;
+			}
+		}
+
+		// Check Paddle-RIGHT
+
+		i = 0;
+
+		for(i = _paddle_2->y_pos; i < _paddle_2->y_pos + _paddle_2->height; ++i)
+		{
+			if( (_ball->y == i) && (_ball->x == _paddle_2->x_pos) )
+			{
+				_ball->x_direction *= -1; // switch directions!
+				
+				break;
+			}
+		}
+
 		/* Did Player 1 score? */
 		if(_ball->next_x == _ball->max_x - BORDER_Y_SIZE)
 		{
