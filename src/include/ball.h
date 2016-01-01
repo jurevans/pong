@@ -21,14 +21,6 @@
 #define BALL_STRING "*"
 #endif
 
-#ifndef SERVE_OFFSET_X
-#define SERVE_OFFSET_X	15
-#endif
-
-#ifndef SERVE_OFFSET_Y
-#define SERVE_OFFSET_Y	15
-#endif
-
 /* STRUCTURES */
 
 struct Ball {
