@@ -44,6 +44,11 @@ int main(int argc, char *argv[])
 	scanf("%s", _user_1->username);
 	system("clear");
 
+	/* Get Player 2 Name */
+	printf("\nEnter name for Player 2: ");
+	scanf("%s", _user_2->username);
+	system("clear");
+
 	// Initialize NCurses Screen, Set Options 
 	initscr();
 	cbreak();
@@ -90,7 +95,6 @@ int main(int argc, char *argv[])
 
 			if( key == KEY_UP ) {
 				_paddle_1->y_pos -= 2;
-				_paddle_2->y_pos += 2;
 
 				wclear(field);
 				divider_draw( field );
@@ -98,11 +102,25 @@ int main(int argc, char *argv[])
 
 			if( key == KEY_DOWN ) {
 				_paddle_1->y_pos += 2;
+
+				wclear(field);
+				divider_draw( field );
+			}
+
+			if( key == 'a' ) {
 				_paddle_2->y_pos -= 2;
 
 				wclear(field);
 				divider_draw( field );
 			}
+	
+			if( key == 'z' ) {
+				_paddle_2->y_pos += 2;
+
+				wclear(field);
+				divider_draw( field );
+			}
+
 		}
 
 		/* Render paddles */
