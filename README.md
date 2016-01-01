@@ -1,7 +1,11 @@
 PONG - "ncurses" version - BETA
 ===============================
 
+<<<<<<< HEAD
 ***Version***
+=======
+***VERSION***
+>>>>>>> f9f967d6f3a88cedc3c069d43a737d9e03a82cad
 
 `0.5.1`
 
