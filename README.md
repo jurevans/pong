@@ -1,5 +1,9 @@
-PONG - "ncurses" version
-========================
+PONG - "ncurses" version - BETA
+===============================
+
+***VERSION***
+
+`0.5.1`
 
 ***Build***
 
