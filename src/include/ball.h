@@ -5,52 +5,53 @@
 #ifndef __BALL_H__
 #define __BALL_H__
 
-	#include <string.h>
+#include <string.h>
 
-	/* CONSTANTS */
+/* CONSTANTS */
 
-	#ifndef DELAY
-	#define DELAY 30000
-	#endif
+#ifndef DELAY
+#define DELAY 30000
+#endif
 
-	#ifndef DEBUG_POSITION
-	#define DEBUG_POSITION	0
-	#endif
+#ifndef DEBUG_POSITION
+#define DEBUG_POSITION	0
+#endif
 
-	#ifndef BALL_STRING
-	#define BALL_STRING "*"
-	#endif
+#ifndef BALL_STRING
+#define BALL_STRING "*"
+#endif
 
-	#ifndef SERVE_OFFSET_X
-	#define SERVE_OFFSET_X	15
-	#endif
+#ifndef SERVE_OFFSET_X
+#define SERVE_OFFSET_X	15
+#endif
 
-	#ifndef SERVE_OFFSET_Y
-	#define SERVE_OFFSET_Y	15
-	#endif
+#ifndef SERVE_OFFSET_Y
+#define SERVE_OFFSET_Y	15
+#endif
 
-	/* STRUCTURES */
+/* STRUCTURES */
 
-	struct Ball {
-		int x;
-		int y;
-		int max_x;
-		int max_y;
-		int next_x;
-		int next_y;
-		int x_direction;
-		int y_direction;
-		char element[strlen(BALL_STRING)];
-	};
+struct Ball {
+	int x;
+	int y;
+	int max_x;
+	int max_y;
+	int next_x;
+	int next_y;
+	int x_direction;
+	int y_direction;
+	char element[strlen(BALL_STRING)];
+};
 
-	/* PROTOTYPES */
+/* PROTOTYPES */
 
-	extern struct Ball* ball_create( int x, int y, 
-				  int max_x, int max_y,
-				  int next_x, int next_y, 
-				  int x_direction, int y_direction, char element[strlen(BALL_STRING)] );
+extern struct Ball* ball_create( int x, int y, 
+			  int max_x, int max_y,
+			  int next_x, int next_y, 
+			  int x_direction, int y_direction, char element[strlen(BALL_STRING)] );
 
-	extern void ball_next( struct Ball* _ball );
+extern void ball_next( struct Ball* _ball );
 
-	extern void ball_destroy( struct Ball* _ball );
+extern void ball_destroy( struct Ball* _ball );
+
 #endif
