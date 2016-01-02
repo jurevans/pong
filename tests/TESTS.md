@@ -1,4 +1,0 @@
-TESTS OVERVIEW
-==============
-
-Coming soon...
