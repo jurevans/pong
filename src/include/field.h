@@ -4,26 +4,26 @@
 #ifndef __FIELD_H_
 #define __FIELD_H_
 
-	/* INCLUDES */
+/* INCLUDES */
 
-	#include <ncurses.h>
+#include <ncurses.h>
 
-	/* CONSTANTS */
+/* CONSTANTS */
 
-	#define BORDER_X_SIZE 1
-	#define BORDER_Y_SIZE 1
+#define BORDER_X_SIZE 1
+#define BORDER_Y_SIZE 1
 
-	#define SCORE_SIZE 	3
-	#define CORNERS		"+"
-	#define BORDERS_X 	"-"
-	#define BORDERS_Y 	"|"
+#define SCORE_SIZE 	3
+#define CORNERS		"+"
+#define BORDERS_X 	"-"
+#define BORDERS_Y 	"|"
 
-	/* PROTOTYPES  */
+/* PROTOTYPES  */
 
-	extern void borders_draw(WINDOW* screen);
-	extern void divider_draw(WINDOW* field); 
+extern void borders_draw(WINDOW* screen);
+extern void divider_draw(WINDOW* field); 
 
-	extern int key_pressed(void);
+extern int key_pressed(void);
 
 #endif
 
