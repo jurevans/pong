@@ -90,37 +90,33 @@ int main(int argc, char *argv[])
 		getmaxyx( field, _ball->max_y, _ball->max_x );
 
 		/* Get Key Press from Player */
+		/* TODO, among many other to-dos...: Make constants for Player 2 keys if on same keyboard... */
 		if( key_pressed() ) {
 			key = getch();
 
-			if( key == KEY_UP ) {
+			/* Make the following "ifs" more DRY!!! */
+
+			if( key == KEY_UP && _paddle_1->y_pos >= BORDER_X_SIZE ) {
 				_paddle_1->y_pos -= 2;
 
-				wclear(field);
-				divider_draw( field );
 			}
 
-			if( key == KEY_DOWN ) {
+			if( key == KEY_DOWN && (_paddle_1->y_pos + _paddle_1->height + (BORDER_X_SIZE * 2)) < field_max_y ) {
 				_paddle_1->y_pos += 2;
-
-				wclear(field);
-				divider_draw( field );
 			}
 
-			if( key == 'a' ) {
+			if( key == 'a'  && _paddle_2->y_pos >= BORDER_X_SIZE ) {
 				_paddle_2->y_pos -= 2;
-
-				wclear(field);
-				divider_draw( field );
 			}
 	
-			if( key == 'z' ) {
-				_paddle_2->y_pos += 2;
+			if( key == 'z'  
+				&& (_paddle_2->y_pos + _paddle_2->height + (BORDER_X_SIZE * 2)) < field_max_y ) {
 
-				wclear(field);
-				divider_draw( field );
+				_paddle_2->y_pos += 2;
 			}
 
+			wclear(field);
+			divider_draw( field );
 		}
 
 		/* Render paddles */

@@ -11,7 +11,6 @@
 
 #include "include/field.h"
 #include "include/paddle.h"
-#include "include/ball.h"
 
 struct Paddle* paddle_create( int x_pos, int y_pos, int height, int width, char paddle_char[2] )
 {
@@ -45,7 +44,7 @@ void paddle_draw( WINDOW* field, struct Paddle* _paddle, int x_pos )
 
 	/* X position */
 	if(x_pos == 1) {
-		_paddle->x_pos = (BORDER_Y_SIZE * 2);
+		_paddle->x_pos = BORDER_Y_SIZE;
 	} else {
 		_paddle->x_pos = field_max_x - _paddle->width - (BORDER_Y_SIZE * 3);
 	}
