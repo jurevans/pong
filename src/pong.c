@@ -18,14 +18,14 @@
 #include "include/paddle.h"
 #include "include/screen.h"
 
-int main(int argc, char *argv[]) 
+int main(int argc, char* argv[]) 
 {
 	int 	max_x, max_y, 
 		new_x, new_y, 
 		key, 
 		field_max_x, field_max_y;
 
-	struct Ball* _ball = ball_create( 0, 0, 50, 50, 0, 0, 1, 1, "*" );
+	struct Ball* _ball = ball_create( 0, 0, 50, 50, 0, 0, 1, 1, BALL_STRING );
 	struct User* _user_1 = user_create(0, "Player 1", 1);
 	struct User* _user_2 = user_create(0, "Player 2", 0);
 	struct Paddle* _paddle_1 = paddle_create(0, 0, 0, 2, PADDLE_CHAR);
