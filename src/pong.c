@@ -1,6 +1,6 @@
 /* 
  * Pong
- * Version 0.5.1
+ * Version 0.5.5 - BETA
  * pong.c
  * Author: Justin R. Evans
  */
