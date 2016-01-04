@@ -2,6 +2,7 @@
 /* User/Player library */
 
 #ifndef __USER_H_
+#define __USER_H_
 
 /* CONSTANTS */
 
