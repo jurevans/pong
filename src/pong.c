@@ -1,9 +1,10 @@
 /* 
  * Pong
- * Version 0.5.1
  * pong.c
  * Author: Justin R. Evans
  */
+
+#define VERSION "0.5.5"
 
 #include <stdio.h>
 #include <stdlib.h>

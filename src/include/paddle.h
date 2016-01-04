@@ -2,6 +2,8 @@
 /* Paddle library */
 
 #ifndef __PADDLE_H_
+#define __PADDLE_H_
+
 /* CONSTANTS */
 
 #ifndef PADDLE_CHAR
