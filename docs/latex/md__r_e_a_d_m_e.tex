@@ -1,3 +1,7 @@
+$\ast$$\ast$$\ast$\+V\+E\+R\+S\+I\+O\+N$\ast$$\ast$$\ast$
+
+{\ttfamily 0.\+6.\+2}
+
 $\ast$$\ast$$\ast$\+Build$\ast$$\ast$$\ast$
 
 {\ttfamily make}
@@ -28,9 +32,13 @@ So, this version of Pong wasn\textquotesingle{}t your cup of tea? Well, that\tex
 
 $\ast$$\ast$$\ast$\+Documentation$\ast$$\ast$$\ast$
 
+Install {\ttfamily Sphinx} if needed\+:
+
+{\ttfamily pip install -\/\+U Sphinx}
+
 As the code continues to grow, so will the documentation should it be formatted correctly. To generate the latest version of the docs, simply run\+:
 
-{\ttfamily doxygen Doxyfile}
+{\ttfamily \mbox{[}R\+E\+P\+L\+A\+C\+E W\+I\+T\+H S\+P\+H\+I\+N\+X D\+O\+C C\+O\+M\+M\+A\+N\+D\mbox{]}}
 
 \subsection*{Dependencies}
 
@@ -38,7 +46,7 @@ As the code continues to grow, so will the documentation should it be formatted 
 \begin{DoxyItemize}
 \item \href{https://www.gnu.org/software/ncurses/}{\tt ncurses} -\/ ncurses (\char`\"{}new\char`\"{} curses -\/ be sure to install {\ttfamily ncurses.\+h} -\/ Many Debian/\+Ubuntu-\/based {\itshape Linux} distros package this in libncurses-\/dev)
 \item \href{http://valgrind.org/}{\tt Valgrind} -\/ Instrumentation Framework
-\item \href{http://www.stack.nl/~dimitri/doxygen/}{\tt Doxygen} -\/ Documentation
+\item \href{http://sphinx-doc.org/}{\tt Sphinx} -\/ Sphinx Python Documentation Generator
 \end{DoxyItemize}
 
 -- J\+U\+S\+T\+I\+N R. E\+V\+A\+N\+S --
@@ -54,87 +62,36 @@ File structure\+:
 
 \begin{DoxyCode}
 1 .
-2 |── Doxyfile
-3 ├── Makefile
-4 ├── README.md
-5 ├── bin
-6 │   ├── pong
-7 │   └── pong.dSYM
-8 │       └── Contents
-9 │           ├── Info.plist
-10 │           └── Resources
-11 │               └── DWARF
-12 │                   └── pong
-13 ├── docs
-14 │   ├── html
-15 │   │   ├── arrowdown.png
-16 │   │   ├── arrowright.png
-17 │   │   ├── bc\_s.png
-18 │   │   ├── bdwn.png
-19 │   │   ├── closed.png
-20 │   │   ├── doc.png
-21 │   │   ├── doxygen.css
-22 │   │   ├── doxygen.png
-23 │   │   ├── dynsections.js
-24 │   │   ├── folderclosed.png
-25 │   │   ├── folderopen.png
-26 │   │   ├── index.html
-27 │   │   ├── jquery.js
-28 │   │   ├── md\_\_r\_e\_a\_d\_m\_e.html
-29 │   │   ├── nav\_f.png
-30 │   │   ├── nav\_g.png
-31 │   │   ├── nav\_h.png
-32 │   │   ├── open.png
-33 │   │   ├── pages.html
-34 │   │   ├── search
-35 │   │   │   ├── all\_0.html
-36 │   │   │   ├── all\_0.js
-37 │   │   │   ├── close.png
-38 │   │   │   ├── mag\_sel.png
-39 │   │   │   ├── nomatches.html
-40 │   │   │   ├── pages\_0.html
-41 │   │   │   ├── pages\_0.js
-42 │   │   │   ├── search.css
-43 │   │   │   ├── search.js
-44 │   │   │   ├── search\_l.png
-45 │   │   │   ├── search\_m.png
-46 │   │   │   ├── search\_r.png
-47 │   │   │   └── searchdata.js
-48 │   │   ├── splitbar.png
-49 │   │   ├── sync\_off.png
-50 │   │   ├── sync\_on.png
-51 │   │   ├── tab\_a.png
-52 │   │   ├── tab\_b.png
-53 │   │   ├── tab\_h.png
-54 │   │   ├── tab\_s.png
-55 │   │   └── tabs.css
-56 │   └── latex
-57 │       ├── Makefile
-58 │       ├── doxygen.sty
-59 │       ├── md\_\_r\_e\_a\_d\_m\_e.tex
-60 │       └── refman.tex
-61 ├── lib
-62 ├── src
-63 │   ├── ball.c
-64 │   ├── field.c
-65 │   ├── include
-66 │   │   ├── ball.h
-67 │   │   ├── field.h
-68 │   │   ├── paddle.h
-69 │   │   ├── screen.h
-70 │   │   └── user.h
-71 │   ├── obj
-72 │   │   ├── ball.o
-73 │   │   ├── field.o
-74 │   │   ├── paddle.o
-75 │   │   ├── screen.o
-76 │   │   └── user.o
-77 │   ├── paddle.c
-78 │   ├── pong.c
-79 │   ├── screen.c
-80 │   └── user.c
-81 └── tests
-82     └── TESTS.md
+2 ├── Makefile
+3 ├── README.md
+4 ├── bin
+5 │   ├── pong
+6 │   └── pong.dSYM
+7 │       └── Contents
+8 │           ├── Info.plist
+9 │           └── Resources
+10 │               └── DWARF
+11 │                   └── pong
+12 ├── docs
+13 ├── src
+14 │   ├── ball.c
+15 │   ├── field.c
+16 │   ├── include
+17 │   │   ├── ball.h
+18 │   │   ├── field.h
+19 │   │   ├── paddle.h
+20 │   │   ├── screen.h
+21 │   │   └── user.h
+22 │   ├── obj
+23 │   │   ├── ball.o
+24 │   │   ├── field.o
+25 │   │   ├── paddle.o
+26 │   │   ├── screen.o
+27 │   │   └── user.o
+28 │   ├── paddle.c
+29 │   ├── pong.c
+30 │   ├── screen.c
+31 │   └── user.c
 \end{DoxyCode}
 
 

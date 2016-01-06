@@ -45,11 +45,17 @@ As the code continues to grow, so will the documentation should it be formatted 
 
 - [ncurses](https://www.gnu.org/software/ncurses/) - ncurses ("new" curses - be sure to install `ncurses.h` - Many Debian/Ubuntu-based  *Linux* distros package this in libncurses-dev)
 - [Valgrind](http://valgrind.org/) - Instrumentation Framework
-- [Doxygen](http://www.stack.nl/~dimitri/doxygen/) - Documentation
+- [Doxygen](http://www.stack.nl/~dimitri/doxygen/) - Generate documentation from source code
+
+
+AUTHOR INFO
+-----------
 
 -- JUSTIN R. EVANS --
 
 jurevans@gmail.com
+
+https://www.linkedin.com/in/justinrobertevans
 
 http://fullstackconsultancy.net/
 
@@ -60,7 +66,6 @@ File structure:
 
 ```
 .
-|── Doxyfile
 ├── Makefile
 ├── README.md
 ├── bin
@@ -72,54 +77,6 @@ File structure:
 │               └── DWARF
 │                   └── pong
 ├── docs
-│   ├── html
-│   │   ├── arrowdown.png
-│   │   ├── arrowright.png
-│   │   ├── bc_s.png
-│   │   ├── bdwn.png
-│   │   ├── closed.png
-│   │   ├── doc.png
-│   │   ├── doxygen.css
-│   │   ├── doxygen.png
-│   │   ├── dynsections.js
-│   │   ├── folderclosed.png
-│   │   ├── folderopen.png
-│   │   ├── index.html
-│   │   ├── jquery.js
-│   │   ├── md__r_e_a_d_m_e.html
-│   │   ├── nav_f.png
-│   │   ├── nav_g.png
-│   │   ├── nav_h.png
-│   │   ├── open.png
-│   │   ├── pages.html
-│   │   ├── search
-│   │   │   ├── all_0.html
-│   │   │   ├── all_0.js
-│   │   │   ├── close.png
-│   │   │   ├── mag_sel.png
-│   │   │   ├── nomatches.html
-│   │   │   ├── pages_0.html
-│   │   │   ├── pages_0.js
-│   │   │   ├── search.css
-│   │   │   ├── search.js
-│   │   │   ├── search_l.png
-│   │   │   ├── search_m.png
-│   │   │   ├── search_r.png
-│   │   │   └── searchdata.js
-│   │   ├── splitbar.png
-│   │   ├── sync_off.png
-│   │   ├── sync_on.png
-│   │   ├── tab_a.png
-│   │   ├── tab_b.png
-│   │   ├── tab_h.png
-│   │   ├── tab_s.png
-│   │   └── tabs.css
-│   └── latex
-│       ├── Makefile
-│       ├── doxygen.sty
-│       ├── md__r_e_a_d_m_e.tex
-│       └── refman.tex
-├── lib
 ├── src
 │   ├── ball.c
 │   ├── field.c
@@ -139,8 +96,6 @@ File structure:
 │   ├── pong.c
 │   ├── screen.c
 │   └── user.c
-└── tests
-    └── TESTS.md
 
 ```
 
