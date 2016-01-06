@@ -4,7 +4,7 @@
  * Author: Justin R. Evans
  */
 
-#define VERSION "0.5.5"
+#define VERSION "0.6.1"
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -50,7 +50,7 @@ int main(int argc, char* argv[])
 	scanf("%s", _user_2->username);
 	system("clear");
 
-	// Initialize NCurses Screen, Set Options 
+	/* Initialize NCurses Screen, Set Options  */
 	initscr();
 	cbreak();
 	noecho();
@@ -58,10 +58,10 @@ int main(int argc, char* argv[])
 	curs_set(FALSE);
 	keypad(stdscr, TRUE); 
 
-	// Get Max Screen dimensions
+	/* Get Max Screen dimensions */
 	getmaxyx(stdscr, max_y, max_x);
 
-	// Set up Windows
+	/* Set up Windows */
 	WINDOW* intro = newwin(0, 0, 0, 0);
 	WINDOW* outro = newwin(0, 0, 0, 0);
 	WINDOW* field = newwin(max_y - SCORE_SIZE, max_x, SCORE_SIZE, 0);
@@ -70,20 +70,20 @@ int main(int argc, char* argv[])
 	/* Init Paddles */
 	getmaxyx( field, field_max_y, field_max_x );
 
-	// Paddle 1 - Initial Y value
+	/* Paddle 1 - Initial Y value */
 	_paddle_1->y_pos = (int)((int)(field_max_y / 2) - 
 		(int)((int)(field_max_y / PADDLE_HEIGHT) / 2));
 
-	// Paddle 2 - Initial Y value
+	/* Paddle 2 - Initial Y value */
 	_paddle_2->y_pos = _paddle_1->y_pos;
 
 	/* Show Intro Screen */
 	screen_draw(intro, "PONG");
 
-	// Main game loop
+	/* Main game loop */
 	while( _user_1->score < MAX_SCORE && _user_2->score < MAX_SCORE ) 
 	{
-		// Draw divider line:
+		/* Draw divider line: */
 
 		divider_draw( field );
 
@@ -162,7 +162,7 @@ int main(int argc, char* argv[])
 		
 		/* Detect Ball collision with Paddle 1 or 2 :: Determine turn for User 1 or 2 */
 		
-		// Check Paddle-LEFT
+		/* Check Paddle-LEFT */
 
 		int i; // Determine x,y coordinate, Y is VARIABLE
 
@@ -176,7 +176,7 @@ int main(int argc, char* argv[])
 			}
 		}
 
-		// Check Paddle-RIGHT
+		/* Check Paddle-RIGHT */
 
 		i = 0;
 
@@ -250,7 +250,7 @@ int main(int argc, char* argv[])
 	/* CLEANUP */
 	endwin();
 
-	// TODO: Possible DEALLOC Stack for these? 
+	/* TODO: Possible DEALLOC Stack for these? */
 
 	ball_destroy(_ball);
 	user_destroy(_user_1);
