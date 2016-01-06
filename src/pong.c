@@ -4,7 +4,7 @@
  * Author: Justin R. Evans
  */
 
-#define VERSION "0.6.1"
+#define VERSION "0.6.2"
 
 #include <stdio.h>
 #include <stdlib.h>
