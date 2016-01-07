@@ -144,18 +144,22 @@ int main(int argc, char* argv[])
 			key = getch();
 
 			switch(key) {
+				/* Player 1 - UP */
 				case KEY_UP:
 					if( _paddle_1->y_pos >= BORDER_X_SIZE )
 						_paddle_1->y_pos -= 2;
 					break;
+				/* Player 1 - DOWN */
 				case KEY_DOWN:
 					if( (_paddle_1->y_pos + _paddle_1->height + (BORDER_X_SIZE * 2)) < field_max_y )
 						_paddle_1->y_pos += 2;
 					break;
+				/* Player 2 - UP */
 				case 'a':
 					if( _paddle_2->y_pos >= BORDER_X_SIZE )
 						_paddle_2->y_pos -= 2;	
 					break;
+				/* Player 2 - DOWN */
 				case 'z':
 					if( (_paddle_2->y_pos + _paddle_2->height + (BORDER_X_SIZE * 2)) < field_max_y )
 						_paddle_2->y_pos += 2;
@@ -166,15 +170,18 @@ int main(int argc, char* argv[])
 			divider_draw( field );
 		}
 
-		/* Render paddles */
+		/**
+		 * Render paddles 
+		 */
 		paddle_draw(field, _paddle_1, 1);
 		paddle_draw(field, _paddle_2, 2);
 
 		_ball->max_y -= (BORDER_Y_SIZE * 2);
 		_ball->max_x -= (BORDER_X_SIZE * 2);
 
-		/* Detect Screen Resize */
-
+		/**
+		 * Detect Screen Resize, resize if needed
+		 */
 		getmaxyx(stdscr, new_y, new_x);
 
 		if(new_y != max_y || new_x != max_x) {
@@ -199,18 +206,21 @@ int main(int argc, char* argv[])
 		mvwprintw(stdscr, SCORE_SIZE + 1, BORDER_X_SIZE + 1, status );
 #endif
 
-		/* Wait for just a [usleep amount of DELAY] */
+		/**
+		 * Wait for just a [usleep amount of DELAY] 
+		 */
 		usleep(DELAY);
 
-		/* Print Pong at next location */
+		/** 
+		 * Print Pong at next location 
+		 */
 		ball_next(_ball);
 		mvprintw( _ball->y + BORDER_Y_SIZE + SCORE_SIZE, _ball->x + BORDER_X_SIZE, BALL_STRING );
-		
-		/* Detect Ball collision with Paddle 1 or 2 :: Determine turn for User 1 or 2 */
-		
-		/* Check Paddle-LEFT */
-
-		int i; // Determine x,y coordinate, Y is VARIABLE
+			
+		/** 
+		 *Check Paddle-LEFT 
+		 */
+		int i; /* Determine x,y coordinate, Y is VARIABLE */
 
 		for(i = _paddle_1->y_pos; i < _paddle_1->y_pos + _paddle_1->height; ++i)
 		{
@@ -218,49 +228,64 @@ int main(int argc, char* argv[])
 			{
 				_ball->dir_x *= -1; // switch directions!
 				
+				i = 0;
+				break;
+			} 
+			/**
+		 	 * Check Player 1 for score, if so, increment turn 
+		 	 */
+			else if(_ball->next_x == _ball->max_x - BORDER_Y_SIZE)
+			{
+				_user_1->score++;
+
+				_ball->y = 0;
+				_ball->x = 0;
+
+				_user_1->turn = 1;
+				_user_2->turn = 0;
+
+				i = 0;
+
 				break;
 			}
+
 		}
 
-		/* Check Paddle-RIGHT */
-
-		i = 0;
-
+		/** 
+		 * Check Paddle-RIGHT 
+		 */
 		for(i = _paddle_2->y_pos; i < _paddle_2->y_pos + _paddle_2->height; ++i)
 		{
 			if( (_ball->y == i) && (_ball->x == _paddle_2->x_pos) )
 			{
 				_ball->dir_x *= -1; // switch directions!
+
+				i = 0;
 				
+				break;
+			}
+			/**
+			 * Check Player 1 for score, if so, increment turn 
+			 */
+			else if(_ball->next_x < 0)
+			{
+				_user_2->score++;
+
+				_ball->y = 0;
+				_ball->x = _ball->max_x - BORDER_X_SIZE;
+
+				_user_1->turn = 0;
+				_user_2->turn = 1;
+
+				i = 0;
+
 				break;
 			}
 		}
 
-		/* Did Player 1 score? */
-		if(_ball->next_x == _ball->max_x - BORDER_Y_SIZE)
-		{
-			_user_1->score++;
-
-			_ball->y = 0;
-			_ball->x = 0;
-
-			_user_1->turn = 1;
-			_user_2->turn = 0;
-		}
-
-		/* Did Player 2 score? */
-		if(_ball->next_x < 0)
-		{
-			_user_2->score++;
-
-			_ball->y = 0;
-			_ball->x = _ball->max_x - BORDER_X_SIZE;
-
-			_user_1->turn = 0;
-			_user_2->turn = 1;
-		}
-
-		/* Get and print current scores: */
+		/** 
+		 * Get and print current scores
+		 */
 		snprintf(score_1, 3, "%d", _user_1->score);
 		snprintf(score_2, 3, "%d", _user_2->score);
 
@@ -271,33 +296,46 @@ int main(int argc, char* argv[])
 		mvwprintw(score, 1, (BORDER_Y_SIZE * 2), _user_1->username);
 		mvwprintw(score, 1, max_x - strlen(_user_2->username) - (BORDER_Y_SIZE * 2), _user_2->username);
 
-		/* Draw borders */
+		/**
+		 * Draw borders 
+		 */
 		borders_draw(field);
 		borders_draw(score);
 
-		/* Refresh Screens after updates */
+		/** 
+		 * Refresh Screens after updates 
+		 */
 		wrefresh(field);
 		wrefresh(score);
 
 		refresh();
 	}
 
-	/* Clean up field and score windows */
+	/**
+	 *  Clean up field and score windows 
+	 */
 	delwin(field);
 	delwin(score);
 
-	/* Clear Game Screens */
+	/** 
+	 * Clear Game Screens 
+	 */
 	wclear(stdscr);
 	refresh();
 
-	/* Show Outro Screen */
+	/**
+	 * Show Outro Screen 
+	 */
 	screen_draw(outro, "GAME OVER");
 
-	/* CLEANUP */
+	/** 
+	 * CLEANUP 
+	 */
 	endwin();
 
-	/* TODO: Possible DEALLOC Stack for these? */
-
+	/**
+	 *  TODO: Possible DEALLOC Stack for these? 
+	 */
 	ball_destroy(_ball);
 	user_destroy(_user_1);
 	user_destroy(_user_2);
