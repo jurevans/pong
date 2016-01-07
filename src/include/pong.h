@@ -69,7 +69,7 @@
  */
 #define PRE_BORDER_DELAY 300000
 
-#define MAX_SCORE 10
+#define MAX_SCORE 21
 
 #define BORDER_X_SIZE 1
 #define BORDER_Y_SIZE 1

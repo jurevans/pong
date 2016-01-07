@@ -14,19 +14,40 @@
 
 #include "include/pong.h"
 
+/**
+ * main
+ *
+ * Main program
+ */
+
 int main(int argc, char* argv[]) 
 {
+	/**
+	 * Initialize integers for main program loop
+	 */
 	int 	max_x, max_y, 
 		new_x, new_y, 
 		key, 
 		field_max_x, field_max_y;
-
+	
+	/**
+	 * Initialize Structures
+	 *
+	 * Ball* _ball
+	 * User* _user_1
+	 * User* _user_2
+	 * Paddle* _paddle_1
+	 * Paddle* _paddle_2
+	 */
 	struct Ball* _ball = ball_create( 0, 0, 50, 50, 0, 0, 1, 1 );
 	struct User* _user_1 = user_create( 0, "Player 1", 1 );
 	struct User* _user_2 = user_create( 0, "Player 2", 0 );
 	struct Paddle* _paddle_1 = paddle_create( 0, 0, 0, 2 );
 	struct Paddle* _paddle_2 = paddle_create( 0, 0, 0, 2 );
 
+	/**
+	 * Store Scores for L and R Users (Player 1 | Player 2)
+	 */
 	char score_1[3];
 	char score_2[3];
 
@@ -34,18 +55,24 @@ int main(int argc, char* argv[])
 	char status[10];
 #endif
 
-	/* Get Player 1 Name */
+	/**
+	 * Get Player 1 Name 
+	 */
 	system("clear");
 	printf("\nEnter name for Player 1: ");
 	scanf("%s", _user_1->username);
 	system("clear");
 
-	/* Get Player 2 Name */
+	/**
+	 * Get Player 2 Name 
+	 */
 	printf("\nEnter name for Player 2: ");
 	scanf("%s", _user_2->username);
 	system("clear");
 
-	/* Initialize NCurses Screen, Set Options  */
+	/**
+	 * Initialize NCurses Screen, Set Options  
+	 */
 	initscr();
 	cbreak();
 	noecho();
@@ -53,62 +80,86 @@ int main(int argc, char* argv[])
 	curs_set(FALSE);
 	keypad(stdscr, TRUE); 
 
-	/* Get Max Screen dimensions */
+	/** 
+	 *Get Max Screen dimensions 
+	 */
 	getmaxyx(stdscr, max_y, max_x);
 
-	/* Set up Windows */
+	/** 
+	 * Set up Windows 
+	 */
 	WINDOW* intro = newwin(0, 0, 0, 0);
 	WINDOW* outro = newwin(0, 0, 0, 0);
 	WINDOW* field = newwin(max_y - SCORE_SIZE, max_x, SCORE_SIZE, 0);
 	WINDOW* score = newwin(SCORE_SIZE, max_x, 0, 0);
 
-	/* Init Paddles */
+	/** 
+	 *Initialize Paddles 
+	 */
 	getmaxyx( field, field_max_y, field_max_x );
 
-	/* Paddle 1 - Initial Y value */
+	/** 
+	 * Paddle 1 - Initial Y value 
+	 */
 	_paddle_1->y_pos = (int)((int)(field_max_y / 2) - 
 		(int)((int)(field_max_y / PADDLE_HEIGHT) / 2));
 
-	/* Paddle 2 - Initial Y value */
+	/** 
+	 * Paddle 2 - Initial Y value 
+	 */
 	_paddle_2->y_pos = _paddle_1->y_pos;
 
-	/* Show Intro Screen */
+	/**
+	 * Show Intro Screen 
+	 **/
 	screen_draw(intro, "PONG");
 
-	/* Main game loop */
+	/**
+	 * Main game loop 
+	 *
+	 * Note: Objects keeping state in this loop should use a
+	 * State Machine - this is in the works for next minor version!
+	 *
+	 * Let's play Pong!
+	 */
 	while( _user_1->score < MAX_SCORE && _user_2->score < MAX_SCORE ) 
 	{
-		/* Draw divider line: */
-
+		/** 
+		 * Draw divider line:
+		 *
+		 * Note: Serve should be vector that passes line before
+		 * collision can occur. Will implement in next major revision
+		 */
 		divider_draw( field );
 
-		/* Init Ball dimensions within Field */
+		/** 
+		 * Init Ball position within Field 
+		 */
 		getmaxyx( field, _ball->max_y, _ball->max_x );
 
-		/* Get Key Press from Player */
-		/* TODO, among many other to-dos...: Make constants for Player 2 keys if on same keyboard... */
+		/**
+		 * Retrieve Key presses by Player 1 & 2
+		 */
 		if( key_pressed() ) {
 			key = getch();
 
-			/* Make the following "ifs" more DRY!!! */
-
-			if( key == KEY_UP && _paddle_1->y_pos >= BORDER_X_SIZE ) {
-				_paddle_1->y_pos -= 2;
-
-			}
-
-			if( key == KEY_DOWN && (_paddle_1->y_pos + _paddle_1->height + (BORDER_X_SIZE * 2)) < field_max_y ) {
-				_paddle_1->y_pos += 2;
-			}
-
-			if( key == 'a'  && _paddle_2->y_pos >= BORDER_X_SIZE ) {
-				_paddle_2->y_pos -= 2;
-			}
-	
-			if( key == 'z'  
-				&& (_paddle_2->y_pos + _paddle_2->height + (BORDER_X_SIZE * 2)) < field_max_y ) {
-
-				_paddle_2->y_pos += 2;
+			switch(key) {
+				case KEY_UP:
+					if( _paddle_1->y_pos >= BORDER_X_SIZE )
+						_paddle_1->y_pos -= 2;
+					break;
+				case KEY_DOWN:
+					if( (_paddle_1->y_pos + _paddle_1->height + (BORDER_X_SIZE * 2)) < field_max_y )
+						_paddle_1->y_pos += 2;
+					break;
+				case 'a':
+					if( _paddle_2->y_pos >= BORDER_X_SIZE )
+						_paddle_2->y_pos -= 2;	
+					break;
+				case 'z':
+					if( (_paddle_2->y_pos + _paddle_2->height + (BORDER_X_SIZE * 2)) < field_max_y )
+						_paddle_2->y_pos += 2;
+					break;
 			}
 
 			wclear(field);

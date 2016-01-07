@@ -24,7 +24,6 @@ At this point, you may want to clean your local build files:
 
 ***Testing***
 
-
 `make test`
 
 This will run Valgrind tests while the program is executing (defaults to `valgrind ./bin/pong --leak-check=full -v` (See `Makefile` for more info...)
@@ -62,7 +61,15 @@ http://fullstackconsultancy.net/
 Additional Notes
 ================
 
-File structure:
+Presently, this is set to two player mode.
+
+Player one is set to use UP and DOWN arrow keys to control LEFT Paddle
+
+Player two is set to use 'a' and 'z' characters to control RIGHT Paddle
+
+Winning score is set to 21 as per the Atari 2600 implmentation
+
+File structure overview:
 
 ```
 .
@@ -70,28 +77,18 @@ File structure:
 ├── README.md
 ├── bin
 │   ├── pong
-│   └── pong.dSYM
-│       └── Contents
-│           ├── Info.plist
-│           └── Resources
-│               └── DWARF
-│                   └── pong
 ├── docs
 ├── src
-│   ├── ball.c
-│   ├── field.c
 │   ├── include
-│   │   ├── ball.h
-│   │   ├── field.h
-│   │   ├── paddle.h
-│   │   ├── screen.h
-│   │   └── user.h
+│   │   └── pong.h
 │   ├── obj
 │   │   ├── ball.o
 │   │   ├── field.o
 │   │   ├── paddle.o
 │   │   ├── screen.o
 │   │   └── user.o
+|   ├── ball.c
+│   ├── field.c
 │   ├── paddle.c
 │   ├── pong.c
 │   ├── screen.c
