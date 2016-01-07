@@ -15,7 +15,7 @@
 #include "include/pong.h"
 
 /**
- * main
+ * int main
  *
  * Main program
  */
@@ -227,7 +227,7 @@ int main(int argc, char* argv[])
 			if( (_ball->y == i) && (_ball->x == _paddle_1->x_pos + 2) )
 			{
 				_ball->dir_x *= -1; // switch directions!
-				
+
 				i = 0;
 				break;
 			} 
@@ -241,6 +241,9 @@ int main(int argc, char* argv[])
 				/* Player 1 - SERVE */
 				_ball->y = _paddle_1->y_pos + (int)(_paddle_1->height / 2);
 				_ball->x = (BORDER_Y_SIZE * 2) + (_paddle_1->width * 2) + BORDER_Y_SIZE;
+
+				if( _paddle_1->y_pos + (int)(field_max_y / 2) < (int)(field_max_y / 2) )
+					_ball->dir_y *= -1;
 
 				_user_1->turn = 1;
 				_user_2->turn = 0;
@@ -281,7 +284,11 @@ int main(int argc, char* argv[])
 
 				i = 0;
 
-				_ball->dir_x *= -1; // switch directions!
+				/* Switch Directions */
+				_ball->dir_x *= -1; 
+
+				if( _paddle_2->y_pos + (int)(field_max_y / 2) < (int)(field_max_y / 2) )
+					_ball->dir_y *= -1;
 
 				break;
 			}
