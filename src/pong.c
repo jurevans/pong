@@ -238,8 +238,9 @@ int main(int argc, char* argv[])
 			{
 				_user_1->score++;
 
-				_ball->y = 0;
-				_ball->x = 0;
+				/* Player 1 - SERVE */
+				_ball->y = _paddle_1->y_pos + (int)(_paddle_1->height / 2);
+				_ball->x = (BORDER_Y_SIZE * 2) + (_paddle_1->width * 2) + BORDER_Y_SIZE;
 
 				_user_1->turn = 1;
 				_user_2->turn = 0;
@@ -265,19 +266,22 @@ int main(int argc, char* argv[])
 				break;
 			}
 			/**
-			 * Check Player 1 for score, if so, increment turn 
+			 * Check Player 2 for score, if so, increment turn 
 			 */
 			else if(_ball->next_x < 0)
 			{
 				_user_2->score++;
 
-				_ball->y = 0;
-				_ball->x = _ball->max_x - BORDER_X_SIZE;
+				/* Player 2 - SERVE */
+				_ball->y = _paddle_2->y_pos + (int)(_paddle_2->height / 2);
+				_ball->x = field_max_x - ((BORDER_Y_SIZE * 2) + (_paddle_2->width * 2)) - BORDER_Y_SIZE;
 
 				_user_1->turn = 0;
 				_user_2->turn = 1;
 
 				i = 0;
+
+				_ball->dir_x *= -1; // switch directions!
 
 				break;
 			}
