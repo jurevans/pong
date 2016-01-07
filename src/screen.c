@@ -1,4 +1,6 @@
-/* screen.c - Library for drawing message Windows */
+/**
+ * screen.c - Library for drawing message Windows 
+ */
 
 #include <string.h>
 #include <unistd.h>

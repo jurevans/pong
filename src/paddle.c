@@ -1,5 +1,4 @@
-/*
- * Paddle
+/**
  * paddle.c
  */
 
