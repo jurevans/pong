@@ -3,7 +3,7 @@
 #include <string.h>
 #include <unistd.h>
 
-#include "include/screen.h"
+#include "include/pong.h"
 
 void screen_draw(WINDOW* screen, char* message)
 {

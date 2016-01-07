@@ -9,7 +9,7 @@
 #include <assert.h>
 #include <string.h>
 
-#include "include/user.h"
+#include "include/pong.h"
 
 struct User* user_create( int score, char* username, int turn)
 {

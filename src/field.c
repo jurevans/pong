@@ -1,7 +1,7 @@
 /* field.c - Library for drawing borders/Windows */
 
 #include <unistd.h>
-#include "include/field.h"
+#include "include/pong.h"
 
 void borders_draw(WINDOW* screen)
 {
