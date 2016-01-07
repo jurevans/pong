@@ -4,7 +4,6 @@
  * Author: Justin R. Evans
  */
 
-#define VERSION "0.5.5"
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -13,11 +12,7 @@
 #include <unistd.h>
 #include <assert.h>
 
-#include "include/field.h"
-#include "include/ball.h"
-#include "include/user.h"
-#include "include/paddle.h"
-#include "include/screen.h"
+#include "include/pong.h"
 
 int main(int argc, char* argv[]) 
 {
@@ -26,11 +21,11 @@ int main(int argc, char* argv[])
 		key, 
 		field_max_x, field_max_y;
 
-	struct Ball* _ball = ball_create( 0, 0, 50, 50, 0, 0, 1, 1, BALL_STRING );
-	struct User* _user_1 = user_create(0, "Player 1", 1);
-	struct User* _user_2 = user_create(0, "Player 2", 0);
-	struct Paddle* _paddle_1 = paddle_create(0, 0, 0, 2, PADDLE_CHAR);
-	struct Paddle* _paddle_2 = paddle_create(0, 0, 0, 2, PADDLE_CHAR);
+	struct Ball* _ball = ball_create( 0, 0, 50, 50, 0, 0, 1, 1 );
+	struct User* _user_1 = user_create( 0, "Player 1", 1 );
+	struct User* _user_2 = user_create( 0, "Player 2", 0 );
+	struct Paddle* _paddle_1 = paddle_create( 0, 0, 0, 2 );
+	struct Paddle* _paddle_2 = paddle_create( 0, 0, 0, 2 );
 
 	char score_1[3];
 	char score_2[3];
@@ -50,7 +45,7 @@ int main(int argc, char* argv[])
 	scanf("%s", _user_2->username);
 	system("clear");
 
-	// Initialize NCurses Screen, Set Options 
+	/* Initialize NCurses Screen, Set Options  */
 	initscr();
 	cbreak();
 	noecho();
@@ -58,10 +53,10 @@ int main(int argc, char* argv[])
 	curs_set(FALSE);
 	keypad(stdscr, TRUE); 
 
-	// Get Max Screen dimensions
+	/* Get Max Screen dimensions */
 	getmaxyx(stdscr, max_y, max_x);
 
-	// Set up Windows
+	/* Set up Windows */
 	WINDOW* intro = newwin(0, 0, 0, 0);
 	WINDOW* outro = newwin(0, 0, 0, 0);
 	WINDOW* field = newwin(max_y - SCORE_SIZE, max_x, SCORE_SIZE, 0);
@@ -70,20 +65,20 @@ int main(int argc, char* argv[])
 	/* Init Paddles */
 	getmaxyx( field, field_max_y, field_max_x );
 
-	// Paddle 1 - Initial Y value
+	/* Paddle 1 - Initial Y value */
 	_paddle_1->y_pos = (int)((int)(field_max_y / 2) - 
 		(int)((int)(field_max_y / PADDLE_HEIGHT) / 2));
 
-	// Paddle 2 - Initial Y value
+	/* Paddle 2 - Initial Y value */
 	_paddle_2->y_pos = _paddle_1->y_pos;
 
 	/* Show Intro Screen */
 	screen_draw(intro, "PONG");
 
-	// Main game loop
+	/* Main game loop */
 	while( _user_1->score < MAX_SCORE && _user_2->score < MAX_SCORE ) 
 	{
-		// Draw divider line:
+		/* Draw divider line: */
 
 		divider_draw( field );
 
@@ -158,11 +153,11 @@ int main(int argc, char* argv[])
 
 		/* Print Pong at next location */
 		ball_next(_ball);
-		mvprintw( _ball->y + BORDER_Y_SIZE + SCORE_SIZE, _ball->x + BORDER_X_SIZE, _ball->element );
+		mvprintw( _ball->y + BORDER_Y_SIZE + SCORE_SIZE, _ball->x + BORDER_X_SIZE, BALL_STRING );
 		
 		/* Detect Ball collision with Paddle 1 or 2 :: Determine turn for User 1 or 2 */
 		
-		// Check Paddle-LEFT
+		/* Check Paddle-LEFT */
 
 		int i; // Determine x,y coordinate, Y is VARIABLE
 
@@ -170,13 +165,13 @@ int main(int argc, char* argv[])
 		{
 			if( (_ball->y == i) && (_ball->x == _paddle_1->x_pos + 2) )
 			{
-				_ball->x_direction *= -1; // switch directions!
+				_ball->dir_x *= -1; // switch directions!
 				
 				break;
 			}
 		}
 
-		// Check Paddle-RIGHT
+		/* Check Paddle-RIGHT */
 
 		i = 0;
 
@@ -184,7 +179,7 @@ int main(int argc, char* argv[])
 		{
 			if( (_ball->y == i) && (_ball->x == _paddle_2->x_pos) )
 			{
-				_ball->x_direction *= -1; // switch directions!
+				_ball->dir_x *= -1; // switch directions!
 				
 				break;
 			}
@@ -250,7 +245,7 @@ int main(int argc, char* argv[])
 	/* CLEANUP */
 	endwin();
 
-	// TODO: Possible DEALLOC Stack for these? 
+	/* TODO: Possible DEALLOC Stack for these? */
 
 	ball_destroy(_ball);
 	user_destroy(_user_1);

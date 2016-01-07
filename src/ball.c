@@ -6,15 +6,12 @@
 #include <unistd.h>
 #include <assert.h>
 
-#include "include/ball.h"
-#include "include/field.h"
-
+#include "include/pong.h"
 
 struct Ball* ball_create(	int x, int y,
 				int max_x, int max_y,
 				int next_x, int next_y,
-				int x_direction, int y_direction,
-				char element[strlen(BALL_STRING)] )
+				int dir_x, int dir_y )
 {
 	struct Ball *_ball = malloc(sizeof(struct Ball));
 
@@ -26,31 +23,29 @@ struct Ball* ball_create(	int x, int y,
 	_ball->max_y		= max_y;
 	_ball->next_x 		= next_x;
 	_ball->next_y 		= next_y;
-	_ball->x_direction 	= x_direction;
-	_ball->y_direction 	= y_direction;
-
-	strcpy(_ball->element, element);
+	_ball->dir_x	 	= dir_x;
+	_ball->dir_y 	 	= dir_y;
 
 	return _ball;
 }
 
 void ball_next(struct Ball* _ball)
 {
-	_ball->next_x = _ball->x + _ball->x_direction;
-	_ball->next_y = _ball->y + _ball->y_direction;
+	_ball->next_x = _ball->x + _ball->dir_x;
+	_ball->next_y = _ball->y + _ball->dir_y;
 
 	// Calculate for x-axis
 	if(_ball->next_x >= _ball->max_x || _ball->next_x < 0) {
-		_ball->x_direction *= -1;
+		_ball->dir_x *= -1;
 	} else {
-		_ball->x += _ball->x_direction;
+		_ball->x += _ball->dir_x;
 	}
 
 	// Calculate for y-axis
 	if(_ball->next_y >= _ball->max_y || _ball->next_y < 0) {
-		_ball->y_direction *= -1;
+		_ball->dir_y *= -1;
 	} else {
-		_ball->y += _ball->y_direction;
+		_ball->y += _ball->dir_y;
 	}
 }
 

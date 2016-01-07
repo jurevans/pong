@@ -9,10 +9,9 @@
 #include <assert.h>
 #include <string.h>
 
-#include "include/field.h"
-#include "include/paddle.h"
+#include "include/pong.h"
 
-struct Paddle* paddle_create( int x_pos, int y_pos, int height, int width, char paddle_char[2] )
+struct Paddle* paddle_create( int x_pos, int y_pos, int height, int width )
 {
 	struct Paddle* _paddle = malloc(sizeof(struct Paddle));
 
@@ -22,7 +21,6 @@ struct Paddle* paddle_create( int x_pos, int y_pos, int height, int width, char 
 	_paddle->y_pos = y_pos;
 	_paddle->height = height;
 	_paddle->width = width;
-	strcpy(_paddle->paddle_char, paddle_char);
 
 	return _paddle;
 }
@@ -57,7 +55,7 @@ void paddle_draw( WINDOW* field, struct Paddle* _paddle, int x_pos )
 			mvwprintw( field, 
 				   _paddle->y_pos + BORDER_Y_SIZE + i,
 				   _paddle->x_pos + BORDER_X_SIZE + j, 
-				   _paddle->paddle_char );
+				   PADDLE_CHAR );
 		}
 	}
 }

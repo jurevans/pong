@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.10"/>
-<title>Pong (Ncurses Version): PONG - &quot;ncurses&quot; version</title>
+<title>Pong (Ncurses Version): PONG - &quot;ncurses&quot; version - BETA</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -76,10 +76,12 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- top -->
 <div class="header">
   <div class="headertitle">
-<div class="title">PONG - "ncurses" version </div>  </div>
+<div class="title">PONG - "ncurses" version - BETA </div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p>***Build***</p>
+<div class="textblock"><p>***VERSION***</p>
+<p><code>0.6.2</code></p>
+<p>***Build***</p>
 <p><code>make</code></p>
 <p>You can run this from the local <code>bin</code> directory via: <code>./bin/pong</code></p>
 <p>***Install***</p>
@@ -100,95 +102,46 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <ul>
 <li><a href="https://www.gnu.org/software/ncurses/">ncurses</a> - ncurses ("new" curses - be sure to install <code>ncurses.h</code> - Many Debian/Ubuntu-based <em>Linux</em> distros package this in libncurses-dev)</li>
 <li><a href="http://valgrind.org/">Valgrind</a> - Instrumentation Framework</li>
-<li><a href="http://www.stack.nl/~dimitri/doxygen/">Doxygen</a> - Documentation</li>
+<li><a href="http://www.stack.nl/~dimitri/doxygen/">Doxygen</a> - Generate documentation from source code</li>
 </ul>
+<h2>AUTHOR INFO </h2>
 <p>&ndash; JUSTIN R. EVANS &ndash;</p>
 <p><a href="#" onclick="location.href='mai'+'lto:'+'jur'+'ev'+'ans'+'@g'+'mai'+'l.'+'com'; return false;">jurev<span style="display: none;">.nosp@m.</span>ans@<span style="display: none;">.nosp@m.</span>gmail<span style="display: none;">.nosp@m.</span>.com</a></p>
+<p><a href="https://www.linkedin.com/in/justinrobertevans">https://www.linkedin.com/in/justinrobertevans</a></p>
 <p><a href="http://fullstackconsultancy.net/">http://fullstackconsultancy.net/</a></p>
 <h1>Additional Notes </h1>
 <p>File structure:</p>
 <div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;.</div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;|── Doxyfile</div>
-<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;├── Makefile</div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;├── README.md</div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;├── bin</div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;│   ├── pong</div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;│   └── pong.dSYM</div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;│       └── Contents</div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;│           ├── Info.plist</div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;│           └── Resources</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;│               └── DWARF</div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;│                   └── pong</div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;├── docs</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;│   ├── html</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;│   │   ├── arrowdown.png</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;│   │   ├── arrowright.png</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;│   │   ├── bc_s.png</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;│   │   ├── bdwn.png</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;│   │   ├── closed.png</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;│   │   ├── doc.png</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;│   │   ├── doxygen.css</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;│   │   ├── doxygen.png</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;│   │   ├── dynsections.js</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;│   │   ├── folderclosed.png</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;│   │   ├── folderopen.png</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;│   │   ├── index.html</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;│   │   ├── jquery.js</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;│   │   ├── md__r_e_a_d_m_e.html</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;│   │   ├── nav_f.png</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;│   │   ├── nav_g.png</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;│   │   ├── nav_h.png</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;│   │   ├── open.png</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;│   │   ├── pages.html</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;│   │   ├── search</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;│   │   │   ├── all_0.html</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;│   │   │   ├── all_0.js</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;│   │   │   ├── close.png</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;│   │   │   ├── mag_sel.png</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;│   │   │   ├── nomatches.html</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;│   │   │   ├── pages_0.html</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;│   │   │   ├── pages_0.js</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;│   │   │   ├── search.css</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;│   │   │   ├── search.js</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;│   │   │   ├── search_l.png</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;│   │   │   ├── search_m.png</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;│   │   │   ├── search_r.png</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;│   │   │   └── searchdata.js</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;│   │   ├── splitbar.png</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;│   │   ├── sync_off.png</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;│   │   ├── sync_on.png</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;│   │   ├── tab_a.png</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;│   │   ├── tab_b.png</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;│   │   ├── tab_h.png</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;│   │   ├── tab_s.png</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;│   │   └── tabs.css</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;│   └── latex</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;│       ├── Makefile</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;│       ├── doxygen.sty</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;│       ├── md__r_e_a_d_m_e.tex</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;│       └── refman.tex</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;├── lib</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;├── src</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;│   ├── ball.c</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;│   ├── field.c</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;│   ├── include</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;│   │   ├── ball.h</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;│   │   ├── field.h</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;│   │   ├── paddle.h</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;│   │   ├── screen.h</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;│   │   └── user.h</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;│   ├── obj</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;│   │   ├── ball.o</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;│   │   ├── field.o</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;│   │   ├── paddle.o</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;│   │   ├── screen.o</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;│   │   └── user.o</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;│   ├── paddle.c</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;│   ├── pong.c</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;│   ├── screen.c</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;│   └── user.c</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;└── tests</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    └── TESTS.md</div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;├── Makefile</div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;├── README.md</div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;├── bin</div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;│   ├── pong</div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;│   └── pong.dSYM</div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;│       └── Contents</div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;│           ├── Info.plist</div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;│           └── Resources</div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;│               └── DWARF</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;│                   └── pong</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;├── docs</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;├── src</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;│   ├── ball.c</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;│   ├── field.c</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;│   ├── include</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;│   │   ├── ball.h</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;│   │   ├── field.h</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;│   │   ├── paddle.h</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;│   │   ├── screen.h</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;│   │   └── user.h</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;│   ├── obj</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;│   │   ├── ball.o</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;│   │   ├── field.o</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;│   │   ├── paddle.o</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;│   │   ├── screen.o</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;│   │   └── user.o</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;│   ├── paddle.c</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;│   ├── pong.c</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;│   ├── screen.c</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;│   └── user.c</div>
 </div><!-- fragment --><p>Enjoy! </p>
 </div></div><!-- contents -->
 <!-- start footer part -->
