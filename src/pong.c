@@ -1,4 +1,4 @@
-/* 
+/** 
  * Pong
  * pong.c
  * Author: Justin R. Evans
@@ -29,6 +29,8 @@ int main(int argc, char* argv[])
 		new_x, new_y, 
 		key, 
 		field_max_x, field_max_y;
+
+	char feedback[150];
 	
 	/**
 	 * Initialize Structures
@@ -249,6 +251,10 @@ int main(int argc, char* argv[])
 				_user_2->turn = 0;
 
 				i = 0;
+#if defined(__APPLE__) && defined(__MACH__)
+				snprintf(feedback, sizeof(feedback), "say -v Fred '%s scores'", _user_1->username);
+				system(feedback);
+#endif
 
 				break;
 			}
@@ -289,6 +295,11 @@ int main(int argc, char* argv[])
 
 				if( _paddle_2->y_pos + (int)(field_max_y / 2) < (int)(field_max_y / 2) )
 					_ball->dir_y *= -1;
+
+#if defined(__APPLE__) && defined(__MACH__)
+				snprintf(feedback, sizeof(feedback), "say -v Fred '%s scores'", _user_2->username);
+				system(feedback);
+#endif
 
 				break;
 			}

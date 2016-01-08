@@ -4,13 +4,15 @@
 
 #include <string.h>
 #include <unistd.h>
-
+#include <stdio.h>
+#include <stdlib.h>
 #include "include/pong.h"
 
 void screen_draw(WINDOW* screen, char* message)
 {
 	int i;
 	int max_x, max_y, next_x, next_y;
+	char feedback[50];
 
 	// Because I like to be explicit on my strings
 	char y_char[2] = {'|', '\0'};
@@ -28,6 +30,11 @@ void screen_draw(WINDOW* screen, char* message)
 	mvwprintw(screen, (int)(max_y / 2), (int)(max_x / 2) - (int)(strlen(message) / 2), message);
 	wrefresh(screen);
 	
+#if defined(__APPLE__) && defined(__MACH__)
+	snprintf(feedback, sizeof(feedback), "say -v Fred '%s'", message);
+
+	system(feedback);
+#endif
 	usleep(PRE_BORDER_DELAY);
 	
 	// Draw Sides

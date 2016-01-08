@@ -69,12 +69,13 @@
  */
 #define PRE_BORDER_DELAY 300000
 
-#define MAX_SCORE 21
+#define MAX_SCORE 2
 
 #define BORDER_X_SIZE 1
 #define BORDER_Y_SIZE 1
 
 #define SCORE_SIZE 	3
+#define MESSAGE_SIZE 	3
 #define CORNERS		"+"
 #define BORDERS_X 	"-"
 #define BORDERS_Y 	"|"
@@ -118,9 +119,9 @@ struct User {
  * PROTOTYPES 
  */
 
-extern void borders_draw(WINDOW* screen);
+extern void borders_draw( WINDOW* );
 
-extern void divider_draw(WINDOW* field); 
+extern void divider_draw( WINDOW* ); 
 
 extern int key_pressed(void);
 
@@ -129,21 +130,21 @@ extern struct Ball* ball_create( int x, int y,
 			  	 int next_x, int next_y, 
 			  	 int dir_x, int dir_y );
 
-extern void ball_next( struct Ball* _ball );
+extern void ball_next( struct Ball* );
 
-extern void ball_destroy( struct Ball* _ball );
+extern void ball_destroy( struct Ball* );
 
 extern struct Paddle* paddle_create( int x_pos, int y_pos, 
 				     int height, int width );
 
-extern void paddle_draw( WINDOW* field, struct Paddle* paddle, int x_pos );
+extern void paddle_draw( WINDOW*, struct Paddle*, int x_pos );
 
-extern void paddle_destroy( struct Paddle* _paddle );
+extern void paddle_destroy( struct Paddle* );
 
-extern void screen_draw(WINDOW *screen, char* message);
+extern void screen_draw( WINDOW*, char*);
 
-extern struct User* user_create( int score, char username[30], int turn );
+extern struct User* user_create( int score, char[30], int turn );
 
-extern void user_destroy( struct User* _user );
+extern void user_destroy( struct User* );
 
 #endif /** END if __PONG_H__ */
