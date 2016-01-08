@@ -34,6 +34,12 @@ So, this version of Pong wasn't your cup of tea? Well, that's fine, I suppose. J
 
 `make uninstall`
 
+***Play***
+
+Player 1 (LEFT): `a` for *UP*, `z` for *DOWN* (update `src/include/pong.h` to change)
+
+Player 2 (RIGHT): `ARROW UP` for *UP*, `ARROW DOWN` for *DOWN* (update `src/include/pong.h` to change)
+
 ***Documentation***
 
 As the code continues to grow, so will the documentation should it be formatted correctly. To generate the latest version of the docs, simply run:
