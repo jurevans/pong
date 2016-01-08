@@ -1,6 +1,6 @@
 /** 
  * pong.h
- * Library header for Pong game components
+ * API header for Pong game components
  */
 
 #ifndef _PONG_H_
@@ -69,7 +69,7 @@
  */
 #define PRE_BORDER_DELAY 300000
 
-#define MAX_SCORE 2
+#define MAX_SCORE 21
 
 #define BORDER_X_SIZE 1
 #define BORDER_Y_SIZE 1
@@ -111,7 +111,7 @@ struct Paddle {
 
 struct User {
 	int score;
-	char username[30];
+	char username[50];
 	int turn;
 };
 

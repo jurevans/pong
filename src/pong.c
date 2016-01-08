@@ -62,14 +62,14 @@ int main(int argc, char* argv[])
 	 */
 	system("clear");
 	printf("\nEnter name for Player 1: ");
-	scanf("%s", _user_1->username);
+	fgets(_user_1->username, sizeof(_user_1->username), stdin);
 	system("clear");
 
 	/**
 	 * Get Player 2 Name 
 	 */
 	printf("\nEnter name for Player 2: ");
-	scanf("%s", _user_2->username);
+	fgets(_user_2->username, sizeof(_user_2->username), stdin);
 	system("clear");
 
 	/**
@@ -146,26 +146,27 @@ int main(int argc, char* argv[])
 			key = getch();
 
 			switch(key) {
-				/* Player 1 - UP */
-				case KEY_UP:
+				/* Player 1 - LEFT - UP */
+				case 'a':
 					if( _paddle_1->y_pos >= BORDER_X_SIZE )
-						_paddle_1->y_pos -= 2;
+						_paddle_1->y_pos -= 2;	
 					break;
-				/* Player 1 - DOWN */
-				case KEY_DOWN:
+				/* Player 1 - LEFT - DOWN */
+				case 'z':
 					if( (_paddle_1->y_pos + _paddle_1->height + (BORDER_X_SIZE * 2)) < field_max_y )
 						_paddle_1->y_pos += 2;
 					break;
-				/* Player 2 - UP */
-				case 'a':
+				/* Player 2 - RIGHT - UP */
+				case KEY_UP:
 					if( _paddle_2->y_pos >= BORDER_X_SIZE )
-						_paddle_2->y_pos -= 2;	
+						_paddle_2->y_pos -= 2;
 					break;
-				/* Player 2 - DOWN */
-				case 'z':
+				/* Player 2 - RIGHT DOWN */
+				case KEY_DOWN:
 					if( (_paddle_2->y_pos + _paddle_2->height + (BORDER_X_SIZE * 2)) < field_max_y )
 						_paddle_2->y_pos += 2;
 					break;
+
 			}
 
 			wclear(field);
