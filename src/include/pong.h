@@ -6,7 +6,7 @@
 #ifndef _PONG_H_
 #define _PONG_H_
 
-#define VERSION "0.6.2"
+#define VERSION "0.6.3"
 
 /**
  * Include required libraries for defining prototypes
