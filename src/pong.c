@@ -253,7 +253,7 @@ int main(int argc, char* argv[])
 
 				i = 0;
 #if defined(__APPLE__) && defined(__MACH__)
-				snprintf(feedback, sizeof(feedback), "say -v Fred '%s scores'", _user_1->username);
+				snprintf(feedback, sizeof(feedback), "say -v %s '%s scores'", VOICE, _user_1->username);
 				system(feedback);
 #endif
 
@@ -298,7 +298,7 @@ int main(int argc, char* argv[])
 					_ball->dir_y *= -1;
 
 #if defined(__APPLE__) && defined(__MACH__)
-				snprintf(feedback, sizeof(feedback), "say -v Fred '%s scores'", _user_2->username);
+				snprintf(feedback, sizeof(feedback), "say -v %s '%s scores'", VOICE, _user_2->username);
 				system(feedback);
 #endif
 

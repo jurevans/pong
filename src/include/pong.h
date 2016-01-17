@@ -81,6 +81,11 @@
 #define BORDERS_X 	"-"
 #define BORDERS_Y 	"|"
 
+#if defined(__APPLE__) && defined(__MACH__)
+//#define VOICE "Alex" // Alex, etc...
+#define VOICE "Fred" // Alex, etc...
+#endif
+
 /**
  *  STRUCTURES 
  */

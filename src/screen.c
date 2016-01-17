@@ -31,7 +31,7 @@ void screen_draw(WINDOW* screen, char* message)
 	wrefresh(screen);
 	
 #if defined(__APPLE__) && defined(__MACH__)
-	snprintf(feedback, sizeof(feedback), "say -v Fred '%s'", message);
+	snprintf(feedback, sizeof(feedback), "say -v %s '%s'", VOICE, message);
 
 	system(feedback);
 #endif
