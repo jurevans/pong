@@ -309,15 +309,15 @@ int main(int argc, char* argv[])
 		/** 
 		 * Get and print current scores
 		 */
+		
+		mvwprintw(score, 1, (BORDER_Y_SIZE * 2), _user_1->username);
+		mvwprintw(score, 1, max_x - strlen(_user_2->username) - (BORDER_Y_SIZE * 2), _user_2->username);
 		snprintf(score_1, 3, "%d", _user_1->score);
 		snprintf(score_2, 3, "%d", _user_2->score);
 
 		mvwprintw(score, 1, (int)(max_x / 2) - 5, score_1);
 		mvwprintw(score, 1, (int)(max_x / 2) + 5, score_2);
 		mvwprintw(score, 1, (int)(max_x / 2), "|");
-
-		mvwprintw(score, 1, (BORDER_Y_SIZE * 2), _user_1->username);
-		mvwprintw(score, 1, max_x - strlen(_user_2->username) - (BORDER_Y_SIZE * 2), _user_2->username);
 
 		/**
 		 * Draw borders 
