@@ -26,7 +26,8 @@
  */
 #ifndef DELAY
 #undef DELAY
-#define DELAY 30000
+/* #define DELAY 30000 */
+#define DELAY 25000
 #endif
 
 /**
@@ -79,6 +80,10 @@
 #define CORNERS		"+"
 #define BORDERS_X 	"-"
 #define BORDERS_Y 	"|"
+
+#if defined(__APPLE__) && defined(__MACH__)
+#define VOICE "Fred" // Alex, etc...
+#endif
 
 /**
  *  STRUCTURES 
