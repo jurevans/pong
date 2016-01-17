@@ -26,7 +26,8 @@
  */
 #ifndef DELAY
 #undef DELAY
-#define DELAY 30000
+/* #define DELAY 30000 */
+#define DELAY 25000
 #endif
 
 /**
