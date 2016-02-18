@@ -69,10 +69,6 @@ Additional Notes
 
 Presently, this is set to two player mode.
 
-Player one is set to use UP and DOWN arrow keys to control LEFT Paddle
-
-Player two is set to use 'a' and 'z' characters to control RIGHT Paddle
-
 Winning score is set to 21 as per the Atari 2600 implmentation
 
 File structure overview:
