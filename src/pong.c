@@ -40,8 +40,8 @@ int main(int argc, char* argv[])
 	 * Paddle* _paddle_2
 	 */
 	struct Ball* _ball = ball_create( 0, 0, 50, 50, 0, 0, 1, 1 );
-	struct User* _user_1 = user_create( 0, "Player 1", 1 );
-	struct User* _user_2 = user_create( 0, "Player 2", 0 );
+	struct User* _user_1 = user_create( "Player 1", 1 );
+	struct User* _user_2 = user_create( "Player 2", 0 );
 	struct Paddle* _paddle_1 = paddle_create( 0, 0, 0, 2 );
 	struct Paddle* _paddle_2 = paddle_create( 0, 0, 0, 2 );
 

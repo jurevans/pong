@@ -148,7 +148,7 @@ extern void paddle_destroy( struct Paddle* );
 
 extern void screen_draw( WINDOW*, char*);
 
-extern struct User* user_create( int score, char[30], int turn );
+extern struct User* user_create( char[30], int turn );
 
 extern void user_destroy( struct User* );
 

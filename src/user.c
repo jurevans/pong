@@ -10,16 +10,15 @@
 
 #include "include/pong.h"
 
-struct User* user_create( int score, char* username, int turn)
+struct User* user_create( char* username, int turn)
 {
 	struct User* _user = malloc(sizeof(struct User));
 
 	assert(_user != NULL);
 
 	_user->turn = turn;
-	_user->score = score;
+	_user->score = 0; 
 
-	// GET USERNAME
 	system("clear");
 	printf("\nEnter name for %s: ", username);
 	fgets(_user->username, sizeof(_user->username), stdin);
@@ -37,5 +36,4 @@ void user_destroy( struct User* _user )
 	assert(_user != NULL);
 	free(_user);
 }
-
 
