@@ -61,7 +61,7 @@
 #define CHAR_PRINT_DELAY 5000 
 
 /**
- * PAUSE_SCREN :: IN SECONDS FOR sleep() 
+ * PAUSE_SCREEN :: IN SECONDS FOR sleep() 
  */
 #define PAUSE_SCREEN 2 
 
@@ -145,6 +145,8 @@ extern struct Paddle* paddle_create( int x_pos, int y_pos,
 extern void paddle_draw( WINDOW*, struct Paddle*, int x_pos );
 
 extern void paddle_destroy( struct Paddle* );
+
+extern void screen_init(void);
 
 extern void screen_draw( WINDOW*, char*);
 

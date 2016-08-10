@@ -6,7 +6,19 @@
 #include <unistd.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <ncurses.h>
 #include "include/pong.h"
+
+void screen_init() 
+{
+	// Initializing routines
+	initscr();
+	cbreak();
+	noecho();
+    	nodelay(stdscr, TRUE);
+	curs_set(FALSE);
+	keypad(stdscr, TRUE); 
+}
 
 void screen_draw(WINDOW* screen, char* message)
 {

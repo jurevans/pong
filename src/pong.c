@@ -56,15 +56,10 @@ int main(int argc, char* argv[])
 #endif
 
 	/**
-	 * Initialize NCurses Screen, Set Options  
+	 * Initialize Screen
 	 */
 
-	initscr();
-	cbreak();
-	noecho();
-    	nodelay(stdscr, TRUE);
-	curs_set(FALSE);
-	keypad(stdscr, TRUE); 
+	screen_init();
 
 	/** 
 	 *Get Max Screen dimensions 
