@@ -12,7 +12,6 @@ void screen_draw(WINDOW* screen, char* message)
 {
 	int i;
 	int max_x, max_y, next_x, next_y;
-	char feedback[50];
 
 	// Because I like to be explicit on my strings
 	char y_char[2] = {'|', '\0'};
@@ -29,12 +28,7 @@ void screen_draw(WINDOW* screen, char* message)
 	// Place text in center of screen
 	mvwprintw(screen, (int)(max_y / 2), (int)(max_x / 2) - (int)(strlen(message) / 2), message);
 	wrefresh(screen);
-	
-#if defined(__APPLE__) && defined(__MACH__)
-	snprintf(feedback, sizeof(feedback), "say -v %s '%s'", VOICE, message);
 
-	system(feedback);
-#endif
 	usleep(PRE_BORDER_DELAY);
 	
 	// Draw Sides
@@ -52,7 +46,6 @@ void screen_draw(WINDOW* screen, char* message)
 	}
 
 	// RIGHT
-	
 	for( i = 1; i < (max_y - (int)(y_offset * 2)) ; ++i )
 	{
 		next_y++;
@@ -64,7 +57,6 @@ void screen_draw(WINDOW* screen, char* message)
 	}
 
 	// BOTTOM
-
 	for( i = 1; i < (max_x - (int)(x_offset * 2) + strlen(y_char)); ++i )
 	{
 
@@ -77,7 +69,6 @@ void screen_draw(WINDOW* screen, char* message)
 	}
 
 	// LEFT
-	
 	next_x += strlen(y_char);
 
 	for( i = 1; i < (max_y - (int)(y_offset * 2) - strlen(x_char)); ++i )
