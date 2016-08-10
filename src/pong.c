@@ -56,23 +56,9 @@ int main(int argc, char* argv[])
 #endif
 
 	/**
-	 * Get Player 1 Name 
-	 */
-	system("clear");
-	printf("\nEnter name for Player 1: ");
-	fgets(_user_1->username, sizeof(_user_1->username), stdin);
-	system("clear");
-
-	/**
-	 * Get Player 2 Name 
-	 */
-	printf("\nEnter name for Player 2: ");
-	fgets(_user_2->username, sizeof(_user_2->username), stdin);
-	system("clear");
-
-	/**
 	 * Initialize NCurses Screen, Set Options  
 	 */
+
 	initscr();
 	cbreak();
 	noecho();

@@ -19,7 +19,15 @@ struct User* user_create( int score, char* username, int turn)
 	_user->turn = turn;
 	_user->score = score;
 
-	strcpy(_user->username, username);
+	// GET USERNAME
+	system("clear");
+	printf("\nEnter name for %s: ", username);
+	fgets(_user->username, sizeof(_user->username), stdin);
+	system("clear");
+
+	if(_user->username[0] == '\0' || _user->username[0] == '\n') {
+		strcpy(_user->username, username);
+	}
 
 	return _user;
 }

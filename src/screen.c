@@ -41,7 +41,6 @@ void screen_draw(WINDOW* screen, char* message)
 		mvwprintw(screen, y_offset, next_x, x_char);
 		wrefresh(screen);
 
-
 		usleep(CHAR_PRINT_DELAY);
 	}
 
