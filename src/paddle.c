@@ -6,8 +6,6 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <assert.h>
-#include <string.h>
-
 #include "include/pong.h"
 
 struct Paddle* paddle_create( int x_pos, int y_pos, int height, int width )

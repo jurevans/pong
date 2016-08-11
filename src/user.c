@@ -7,7 +7,6 @@
 #include <unistd.h>
 #include <assert.h>
 #include <string.h>
-
 #include "include/pong.h"
 
 struct User* user_create( char* username, int turn)

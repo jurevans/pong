@@ -8,7 +8,6 @@
 #include <ncurses.h>
 #include <unistd.h>
 #include <assert.h>
-
 #include "include/pong.h"
 
 struct Ball* ball_create(	int x, int y,

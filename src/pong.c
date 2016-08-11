@@ -11,7 +11,6 @@
 #include <ncurses.h>
 #include <unistd.h>
 #include <assert.h>
-
 #include "include/pong.h"
 
 /**
@@ -75,7 +74,7 @@ int main(int argc, char* argv[])
 	WINDOW* score = newwin(SCORE_SIZE, max_x, 0, 0);
 
 	/** 
-	 *Initialize Paddles 
+	 * Initialize Paddles 
 	 */
 	getmaxyx( field, field_max_y, field_max_x );
 
@@ -332,7 +331,5 @@ int main(int argc, char* argv[])
 	ball_destroy(_ball);
 	user_destroy(_user_1);
 	user_destroy(_user_2);
-
-	return 0;
 }
 

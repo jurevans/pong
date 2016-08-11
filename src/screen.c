@@ -6,7 +6,6 @@
 #include <unistd.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <ncurses.h>
 #include "include/pong.h"
 
 void screen_init() 
