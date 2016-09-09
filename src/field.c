@@ -35,7 +35,7 @@ void borders_draw(WINDOW* screen)
 	}
 }
 
-int key_pressed(void)
+int is_key_pressed(void)
 {
 	int ch = getch();
 

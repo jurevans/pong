@@ -120,7 +120,7 @@ int main(int argc, char* argv[])
 		/**
 		 * Retrieve Key presses by Player 1 & 2
 		 */
-		if( key_pressed() ) {
+		if( is_key_pressed() ) {
 			key = getch();
 
 			switch(key) {

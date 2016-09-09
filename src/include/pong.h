@@ -128,7 +128,7 @@ extern void borders_draw( WINDOW* );
 
 extern void divider_draw( WINDOW* ); 
 
-extern int key_pressed(void);
+extern int is_key_pressed(void);
 
 extern struct Ball* ball_create( int x, int y, 
 			  	 int max_x, int max_y,
