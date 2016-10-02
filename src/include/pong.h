@@ -81,9 +81,10 @@
 #define BORDERS_X 	"-"
 #define BORDERS_Y 	"|"
 
-#if defined(__APPLE__) && defined(__MACH__)
-#define VOICE "Fred" // Alex, etc...
-#endif
+#define PLAYER_1_KEYUP		'a'
+#define PLAYER_1_KEYDOWN	'z'
+#define PLAYER_2_KEYUP		KEY_UP
+#define PLAYER_2_KEYDOWN	KEY_DOWN
 
 /**
  *  STRUCTURES 

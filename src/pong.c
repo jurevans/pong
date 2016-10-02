@@ -125,22 +125,22 @@ int main(int argc, char* argv[])
 
 			switch(key) {
 				/* Player 1 - LEFT - UP */
-				case 'a':
+				case PLAYER_1_KEYUP:
 					if( _paddle_1->y_pos >= BORDER_X_SIZE )
 						_paddle_1->y_pos -= 2;	
 					break;
 				/* Player 1 - LEFT - DOWN */
-				case 'z':
+				case PLAYER_1_KEYDOWN:
 					if( (_paddle_1->y_pos + _paddle_1->height + (BORDER_X_SIZE * 2)) < field_max_y )
 						_paddle_1->y_pos += 2;
 					break;
 				/* Player 2 - RIGHT - UP */
-				case KEY_UP:
+				case PLAYER_2_KEYUP:
 					if( _paddle_2->y_pos >= BORDER_X_SIZE )
 						_paddle_2->y_pos -= 2;
 					break;
 				/* Player 2 - RIGHT DOWN */
-				case KEY_DOWN:
+				case PLAYER_2_KEYDOWN:
 					if( (_paddle_2->y_pos + _paddle_2->height + (BORDER_X_SIZE * 2)) < field_max_y )
 						_paddle_2->y_pos += 2;
 					break;
