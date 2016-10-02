@@ -116,14 +116,6 @@ int main(int argc, char* argv[])
 	 **/
 	screen_draw(intro, "PONG");
 
-	/**
-	 * Main game loop 
-	 *
-	 * Note: Objects keeping state in this loop should use a
-	 * State Machine - this is in the works for next minor version!
-	 *
-	 * Let's play Pong!
-	 */
 	while( _user_1->score < MAX_SCORE && _user_2->score < MAX_SCORE ) 
 	{
 		/** 

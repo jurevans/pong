@@ -61,7 +61,7 @@
 #define CHAR_PRINT_DELAY 5000 
 
 /**
- * PAUSE_SCREN :: IN SECONDS FOR sleep() 
+ * PAUSE_SCREEN :: IN SECONDS FOR sleep() 
  */
 #define PAUSE_SCREEN 2 
 
@@ -81,9 +81,10 @@
 #define BORDERS_X 	"-"
 #define BORDERS_Y 	"|"
 
-#if defined(__APPLE__) && defined(__MACH__)
-#define VOICE "Fred" // Alex, etc...
-#endif
+#define PLAYER_1_KEYUP		'a'
+#define PLAYER_1_KEYDOWN	'z'
+#define PLAYER_2_KEYUP		KEY_UP
+#define PLAYER_2_KEYDOWN	KEY_DOWN
 
 /**
  *  STRUCTURES 
@@ -128,7 +129,7 @@ extern void borders_draw( WINDOW* );
 
 extern void divider_draw( WINDOW* ); 
 
-extern int key_pressed(void);
+extern int is_key_pressed(void);
 
 extern struct Ball* ball_create( int x, int y, 
 			  	 int max_x, int max_y,
@@ -146,9 +147,11 @@ extern void paddle_draw( WINDOW*, struct Paddle*, int x_pos );
 
 extern void paddle_destroy( struct Paddle* );
 
+extern void screen_init(void);
+
 extern void screen_draw( WINDOW*, char*);
 
-extern struct User* user_create( int score, char[30], int turn );
+extern struct User* user_create( char[30], int turn );
 
 extern void user_destroy( struct User* );
 
