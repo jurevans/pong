@@ -66,7 +66,7 @@
 #define PAUSE_SCREEN 2 
 
 /**
- * PRE_BORDER_DELAY :: Set delay borfer animation to usleep(PRE_BORDER_DELAY)
+ * PRE_BORDER_DELAY :: Set delay border animation to usleep(PRE_BORDER_DELAY)
  */
 #define PRE_BORDER_DELAY 300000
 
