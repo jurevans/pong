@@ -2,7 +2,8 @@
 # Makefile :: PONG -JRE V.10 #
 ##############################
 
-CC	= clang # gcc
+#CC	= clang
+CC	= gcc
 CFLAGS	= -Wall -Wstrict-prototypes -g
 SRC	= ./src/
 OBJ	= $(SRC)obj/
